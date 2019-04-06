@@ -1,5 +1,6 @@
-package view;
+package view.panels;
 
+import constant.Constants;
 import listener.ChangeStateListener;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.awt.*;
 public class MenuPanel extends JPanel {
 
     public MenuPanel() {
-        this.setBackground(Color.BLACK);
+        setBackground(Color.BLACK);
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new GridBagLayout());
 
@@ -20,7 +21,7 @@ public class MenuPanel extends JPanel {
 
         Font titleFont = new Font("Serif", Font.PLAIN, 50);
 
-        JLabel title = new JLabel("Professor-App");
+        JLabel title = new JLabel(Constants.APP_TITLE);
         title.setFont(titleFont);
         title.setForeground(Color.lightGray);
         title.setBackground(Color.white);
@@ -35,11 +36,11 @@ public class MenuPanel extends JPanel {
         buttons.setBackground(Color.black);
         JButton createQuizButton = new JButton();
         createQuizButton.setPreferredSize(buttonDimension);
-        createQuizButton.setText("Create Quiz");
+        createQuizButton.setText(Constants.CREATE_QUIZ);
         createQuizButton.addActionListener(new ChangeStateListener());
         createQuizButton.setFocusPainted(false);
         buttons.add(createQuizButton, gbc);
-
+//
         gbc.weighty = 1;
         add(buttons, gbc);
 

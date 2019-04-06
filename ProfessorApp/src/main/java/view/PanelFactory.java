@@ -1,6 +1,8 @@
 package view;
 
 import constant.Constants;
+import view.panels.MenuPanel;
+import view.panels.QuizCreationPanel;
 
 import javax.swing.*;
 
@@ -26,12 +28,13 @@ public class PanelFactory {
      * @return the panel after creating it
      */
     public static JComponent createPanel(final String componentName) {
-        if(componentName.equalsIgnoreCase(Constants.MENUPANEL)) {
-            if(state == 1) return new MenuPanel();
-            else if(state == 2) return new JPanel();
-        }
+        if(componentName.equalsIgnoreCase(Constants.MENU_PANEL)) {
+            return new MenuPanel();
 
-            return new JPanel(); //Added only till other components are missing!
+        }else if(componentName.equalsIgnoreCase(Constants.QUIZ_PANEL))
+            return new QuizCreationPanel();
+
+        return new JPanel();//Added only till other components are missing!
 
     }
 

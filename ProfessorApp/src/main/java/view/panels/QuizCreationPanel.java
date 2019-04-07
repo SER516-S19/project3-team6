@@ -1,37 +1,58 @@
 package view.panels;
 
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
 import constant.Constants;
 import listener.ChangeStateListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class QuizCreationPanel extends JScrollPane{
+public class QuizCreationPanel extends JPanel{
+    JLabel quizName;
+    JTextField quizNameText;
+    JButton btnAddQuestion,btnSubmit;
     public QuizCreationPanel() {
-        setBackground(Color.BLUE);
-//        setBorder(new EmptyBorder(10, 10, 10, 10));
-//        setLayout(new ScrollPaneLayout());
+        setLayout(new FormLayout(new ColumnSpec[] {
+                FormSpecs.RELATED_GAP_COLSPEC,
+                FormSpecs.DEFAULT_COLSPEC,
+                FormSpecs.RELATED_GAP_COLSPEC,
+                ColumnSpec.decode("default:grow"),},
+                new RowSpec[] {
+                        FormSpecs.RELATED_GAP_ROWSPEC,
+                        FormSpecs.DEFAULT_ROWSPEC,
+                        FormSpecs.RELATED_GAP_ROWSPEC,
+                        FormSpecs.DEFAULT_ROWSPEC,
+                        FormSpecs.RELATED_GAP_ROWSPEC,
+                        FormSpecs.DEFAULT_ROWSPEC,
+                        FormSpecs.RELATED_GAP_ROWSPEC,
+                        FormSpecs.DEFAULT_ROWSPEC,
+                        FormSpecs.RELATED_GAP_ROWSPEC,
+                        FormSpecs.DEFAULT_ROWSPEC,
+                        FormSpecs.RELATED_GAP_ROWSPEC,
+                        FormSpecs.DEFAULT_ROWSPEC,}));
 
+        JLabel quizName = new JLabel("Quiz Name :");
+        add(quizName, "2, 2");
 
-//        Dimension buttonDimension = new Dimension(300, 70);
-//        JPanel contentPanel = new JPanel(new FlowLayout());
-//        contentPanel.setSize(new Dimension(300,300));
-        JLabel quizName = getLabel();
-        quizName.setText("Quiz Name:");
-//        contentPanel.add(quizName);
+        quizNameText = new JTextField();
+        add(quizNameText, "4, 2, left, default");
+        quizNameText.setColumns(10);
 
+//        Panel panel = new Panel();
+//        panel.add(new JLabel("Question:"));
+//        panel.add(new JTextField());
+        add(new QuestionPanel(), "4, 4, default, center");
 
-        JTextField quizNameText = getTextField();
-//        contentPanel.add(quizNameText);
-//        contentPanel.setVisible(true);
-//
+        btnAddQuestion = new JButton("Add Question");
+        add(btnAddQuestion, "4, 10, left, default");
 
-
-        add(quizName);
-        add(quizNameText);
-        add(new JButton());
-        setVisible(true);
+        btnSubmit = new JButton("Submit");
+        add(btnSubmit, "4, 12, right, default");
     }
 
     private void initializeContentpanel(JPanel contentPanel) {
@@ -42,7 +63,7 @@ public class QuizCreationPanel extends JScrollPane{
         return new JLabel();
     }
 
-    private JTextField getTextField(){
-        return new JTextField();
+    private JTextPane getTextField(){
+        return new JTextPane();
     }
 }

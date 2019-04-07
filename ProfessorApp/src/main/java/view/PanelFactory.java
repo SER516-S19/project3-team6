@@ -32,7 +32,7 @@ public class PanelFactory {
             return new MenuPanel();
 
         }else if(componentName.equalsIgnoreCase(Constants.QUIZ_PANEL))
-            return new QuizCreationPanel();
+            return new JScrollPane(new QuizCreationPanel());
 
         return new JPanel();//Added only till other components are missing!
 

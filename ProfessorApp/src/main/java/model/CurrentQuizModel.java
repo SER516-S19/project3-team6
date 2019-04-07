@@ -20,8 +20,8 @@ public class CurrentQuizModel implements ModelInterface{
         fileName = new String();
         quiz = new JSONObject();
         questions = new JSONArray();
-        question = new JSONObject();
-        options = new JSONArray();
+//        question = new JSONObject();
+//        options = new JSONArray();
         currentQuizModel = this;
     }
 
@@ -41,6 +41,8 @@ public class CurrentQuizModel implements ModelInterface{
         for(Map.Entry<String,ArrayList<String>> entry : questionAnswers.entrySet()){
             String questionEntry = entry.getKey();
             ArrayList<String> option = entry.getValue();
+            question = new JSONObject();
+            options = new JSONArray();
             question.put("title",questionEntry);
             for(String answer : option)
                 options.add(answer);

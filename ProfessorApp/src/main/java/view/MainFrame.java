@@ -72,5 +72,9 @@ public class MainFrame extends JFrame {
         setCurrentPanel(containerPanel);
     }
 
+    public static void showMessage(String message){
+        JOptionPane.showMessageDialog(mainFrame, message);
+
+    }
 
 }

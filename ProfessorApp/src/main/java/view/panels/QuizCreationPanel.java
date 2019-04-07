@@ -9,7 +9,11 @@ import listener.ChangeStateListener;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QuizCreationPanel extends JPanel{
+    private static List<QuestionPanel> questions;
     private static JTextField quizNameText;
     private static JButton btnAddQuestion,btnSubmit;
     private static QuizCreationPanel quizCreationPanel = null;
@@ -37,6 +41,7 @@ public class QuizCreationPanel extends JPanel{
             FormSpecs.DEFAULT_ROWSPEC,};
 
     private QuizCreationPanel() {
+        questions = new ArrayList<>();
         setLayout(new FormLayout(columnSpecs, rowSpecs));
 
         JLabel quizName = new JLabel("Quiz Name :");
@@ -66,12 +71,15 @@ public class QuizCreationPanel extends JPanel{
 
 
     private  static void addFooterForm(){
-        listDisplayPanel.add(new QuestionPanel());
+        QuestionPanel questionPanel = new QuestionPanel();
+        listDisplayPanel.add(questionPanel);
+        //Add in Class DataStructure
+        questions.add(questionPanel);
         listDisplayPanel.revalidate();
 
     }
 
-    public static JPanel getQuizCreationPanel() {
+    public static QuizCreationPanel getQuizCreationPanel() {
         if(quizCreationPanel == null)
             return new QuizCreationPanel();
         else
@@ -80,16 +88,28 @@ public class QuizCreationPanel extends JPanel{
 
     private static JButton getBtnAddQuestion(){
         JButton addQuestionButton = new JButton(Constants.ADD_QUESTION);
+        addQuestionButton.setFocusPainted(false);
         addQuestionButton.addActionListener(new ChangeStateListener());
         return addQuestionButton;
     }
 
     private static JButton getBtnSubmit(){
-        return new JButton("Submit");
+        JButton submitButton = new JButton(Constants.SUBMIT);
+        submitButton.setFocusPainted(false);
+        submitButton.addActionListener(new ChangeStateListener());
+        return submitButton;
     }
 
     public static void addQuestionPanel(){
         addFooterForm();
         quizCreationPanel.validate();
+    }
+
+    public List<QuestionPanel> getQuestions(){
+        return questions;
+    }
+
+    public String getQuizName(){
+        return quizNameText.getText();
     }
 }

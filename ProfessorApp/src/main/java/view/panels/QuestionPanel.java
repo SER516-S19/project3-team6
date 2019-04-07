@@ -19,6 +19,8 @@ public class QuestionPanel extends JPanel {
     private JTextField option4Text;
     private Choice correctAnswerChoice;
 
+
+
     /**
      * Create the panel.
      */
@@ -105,5 +107,36 @@ public class QuestionPanel extends JPanel {
         option2Text.setBorder(border);
         option3Text.setBorder(border);
         option4Text.setBorder(border);
+    }
+
+    public String getQuestionText() {
+        return questionText.getText();
+    }
+
+    public String getOption1Text() {
+        return option1Text.getText();
+    }
+
+    public String getOption2Text() {
+        return option2Text.getText();
+    }
+
+    public String getOption3Text() {
+        return option3Text.getText();
+    }
+
+    public String getOption4Text() {
+        return option4Text.getText();
+    }
+
+    public String getCorrectAnswerChoice() {
+        switch(correctAnswerChoice.getSelectedItem()){
+            case Constants.OPTION_1: return option1Text.getText();
+            case Constants.OPTION_2: return option2Text.getText();
+            case Constants.OPTION_3: return option3Text.getText();
+            case Constants.OPTION_4: return option4Text.getText();
+        }
+
+        return option1Text.getText(); //Default Correct answer for every unset correct answer
     }
 }

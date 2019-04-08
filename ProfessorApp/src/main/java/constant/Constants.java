@@ -1,5 +1,15 @@
 package constant;
 
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+
+
+/**
+ * Initializing the Main JFrame Window class for the application.
+ * @author Abhinab Mohanty GIT ID: 53
+ *
+ */
 public class Constants {
     //Global Thread
     public static final String MENU_PANEL = "menuPanel";
@@ -15,6 +25,37 @@ public class Constants {
     public static final String OPTION_4 = "Option 4";
     public static final String[] OPTIONS = new String[]{OPTION_1,OPTION_2,OPTION_3,OPTION_4};
 
-    //Model Key Constants
+    //Form layout Constants
+    public static final ColumnSpec[] columnSpecs = new ColumnSpec[] {
+            FormSpecs.RELATED_GAP_COLSPEC,
+            FormSpecs.DEFAULT_COLSPEC,
+            FormSpecs.RELATED_GAP_COLSPEC,
+            ColumnSpec.decode("default:grow"),};
 
+    public static final RowSpec[] rowSpecs =  new RowSpec[] {
+            FormSpecs.RELATED_GAP_ROWSPEC,
+            FormSpecs.DEFAULT_ROWSPEC,
+            FormSpecs.RELATED_GAP_ROWSPEC,
+            FormSpecs.DEFAULT_ROWSPEC,
+            FormSpecs.RELATED_GAP_ROWSPEC,
+            FormSpecs.DEFAULT_ROWSPEC,
+            FormSpecs.RELATED_GAP_ROWSPEC,
+            FormSpecs.DEFAULT_ROWSPEC,
+            FormSpecs.RELATED_GAP_ROWSPEC,
+            FormSpecs.DEFAULT_ROWSPEC,
+            FormSpecs.RELATED_GAP_ROWSPEC,
+            FormSpecs.DEFAULT_ROWSPEC,
+            FormSpecs.RELATED_GAP_ROWSPEC,
+            FormSpecs.DEFAULT_ROWSPEC,
+            FormSpecs.RELATED_GAP_ROWSPEC,
+            FormSpecs.DEFAULT_ROWSPEC,
+            FormSpecs.RELATED_GAP_ROWSPEC,
+            FormSpecs.DEFAULT_ROWSPEC,};
+
+
+    //Model Key Constants
+    public static final String QUESTION_TITLE = "title";
+    public static final String QUESTION_HEADER = "questions";
+    public static final String ANSWER_OPTIONS = "options";
+    public static final String CORRECT_ANSWER = "correctAnswer";
 }

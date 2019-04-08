@@ -3,19 +3,20 @@ package listener;
 import constant.Constants;
 import controller.QuestionsController;
 import org.json.simple.JSONObject;
-import view.MainFrame;
 import view.panels.QuizCreationPanel;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-
 import static view.MainFrame.setQuizPanel;
 import static view.MainFrame.showMessage;
 import static view.panels.QuizCreationPanel.addQuestionPanel;
 
 
+
+/**+
+ * Main Listener class that relays information from View to Controller and vice-versa
+ * @author Abhinab Mohanty GIT ID: 53
+ */
 public class ChangeStateListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {

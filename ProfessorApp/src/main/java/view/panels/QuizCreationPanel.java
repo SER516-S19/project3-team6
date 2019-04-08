@@ -2,7 +2,6 @@ package view.panels;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 import constant.Constants;
 import listener.ChangeStateListener;
@@ -12,6 +11,12 @@ import javax.swing.border.EtchedBorder;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Initializing the Main JFrame Window class for the application.
+ * @author Abhinab Mohanty GIT ID: 53
+ *
+ */
 public class QuizCreationPanel extends JPanel{
     private static List<QuestionPanel> questions;
     private static JTextField quizNameText;
@@ -19,26 +24,8 @@ public class QuizCreationPanel extends JPanel{
     private static QuizCreationPanel quizCreationPanel = null;
     private static JScrollPane containerPane;
     private static JPanel listDisplayPanel;
-    private static ColumnSpec[] columnSpecs = new ColumnSpec[] {
-            FormSpecs.RELATED_GAP_COLSPEC,
-            FormSpecs.DEFAULT_COLSPEC,
-            FormSpecs.RELATED_GAP_COLSPEC,
-            ColumnSpec.decode("default:grow"),};
-    private static RowSpec[] rowSpecs =  new RowSpec[] {
-            FormSpecs.RELATED_GAP_ROWSPEC,
-            FormSpecs.DEFAULT_ROWSPEC,
-            FormSpecs.RELATED_GAP_ROWSPEC,
-            FormSpecs.DEFAULT_ROWSPEC,
-            FormSpecs.RELATED_GAP_ROWSPEC,
-            FormSpecs.DEFAULT_ROWSPEC,
-            FormSpecs.RELATED_GAP_ROWSPEC,
-            FormSpecs.DEFAULT_ROWSPEC,
-            FormSpecs.RELATED_GAP_ROWSPEC,
-            FormSpecs.DEFAULT_ROWSPEC,
-            FormSpecs.RELATED_GAP_ROWSPEC,
-            FormSpecs.DEFAULT_ROWSPEC,
-            FormSpecs.RELATED_GAP_ROWSPEC,
-            FormSpecs.DEFAULT_ROWSPEC,};
+    private static ColumnSpec[] columnSpecs = Constants.columnSpecs;
+    private static RowSpec[] rowSpecs = Constants.rowSpecs;
 
     private QuizCreationPanel() {
         questions = new ArrayList<>();

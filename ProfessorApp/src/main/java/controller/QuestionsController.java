@@ -8,6 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * Initializing the Main JFrame Window class for the application.
+ * @author Abhinab Mohanty GIT ID: 53
+ *
+ */
 public class QuestionsController implements ControllerInterface {
     private static QuestionsController questionsController = null;
     private String quizName;
@@ -15,6 +21,10 @@ public class QuestionsController implements ControllerInterface {
     private Map<String,ArrayList<String>> questionAnswers;
     private Map<String,String> questionCorrectAnswers;
 
+
+    /**+
+     * Singleton Class for each distinct Model Class
+     */
     private QuestionsController(){
         quizName = new String();
         questionPanelList = new ArrayList<>();
@@ -54,7 +64,8 @@ public class QuestionsController implements ControllerInterface {
 
     }
 
-    private void refineData() {
+    @Override
+    public void refineData() {
         for(QuestionPanel questionPanel : questionPanelList){
             if(!questionAnswers.containsKey(questionPanel.getQuestionText())){
                 ArrayList<String> answers = new ArrayList<>();

@@ -3,11 +3,17 @@ package model;
 import java.util.ArrayList;
 import java.util.Map;
 
+import constant.Constants;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import service.FileSaveService;
 
 
+/**
+ * Initializing the Main JFrame Window class for the application.
+ * @author Abhinab Mohanty GIT ID: 53
+ *
+ */
 public class CurrentQuizModel implements ModelInterface{
     private static CurrentQuizModel currentQuizModel= null;
     private String fileName;
@@ -16,12 +22,13 @@ public class CurrentQuizModel implements ModelInterface{
     private JSONObject question;
     private JSONArray options;
 
+    /**+
+     * Singleton Model for each unique Quiz
+     */
     private CurrentQuizModel() {
         fileName = new String();
         quiz = new JSONObject();
         questions = new JSONArray();
-//        question = new JSONObject();
-//        options = new JSONArray();
         currentQuizModel = this;
     }
 
@@ -43,16 +50,16 @@ public class CurrentQuizModel implements ModelInterface{
             ArrayList<String> option = entry.getValue();
             question = new JSONObject();
             options = new JSONArray();
-            question.put("title",questionEntry);
+            question.put(Constants.QUESTION_TITLE,questionEntry);
             for(String answer : option)
                 options.add(answer);
-            question.put("options",options);
-            question.put("correctAnswer",questionCorrectAnswers.get(questionEntry));
+            question.put(Constants.ANSWER_OPTIONS,options);
+            question.put(Constants.CORRECT_ANSWER,questionCorrectAnswers.get(questionEntry));
 
             questions.add(question);
         }
 
-        quiz.put("questions",questions);
+        quiz.put(Constants.QUESTION_HEADER,questions);
 
         sendToSaveService(quiz);
     }

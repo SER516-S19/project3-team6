@@ -8,6 +8,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 
+/**
+ * Initializing the Main JFrame Window class for the application.
+ * @author Abhinab Mohanty GIT ID: 53
+ *
+ */
 public class MenuPanel extends JPanel {
 
     public MenuPanel() {
@@ -40,7 +45,7 @@ public class MenuPanel extends JPanel {
         createQuizButton.addActionListener(new ChangeStateListener());
         createQuizButton.setFocusPainted(false);
         buttons.add(createQuizButton, gbc);
-//
+
         gbc.weighty = 1;
         add(buttons, gbc);
 

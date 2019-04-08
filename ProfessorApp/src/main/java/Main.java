@@ -16,15 +16,5 @@ public class Main {
             }
         });
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                    MonitorQuizDir monitorQuizDir = MonitorQuizDir.getInstance();
-//                    System.out.println(monitorQuizDir.getCount());
-//            }
-//        }).start();
-
-
     }
 }

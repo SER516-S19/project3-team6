@@ -2,7 +2,6 @@ package view.panels;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 import constant.Constants;
 
@@ -11,6 +10,13 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
+
+/**
+ * Initializing the Main JFrame Window class for the application.
+ * @author Abhinab Mohanty GIT ID: 53
+ *
+ */
+
 public class QuestionPanel extends JPanel {
     private JTextField questionText;
     private JTextField option1Text;
@@ -18,6 +24,8 @@ public class QuestionPanel extends JPanel {
     private JTextField option3Text;
     private JTextField option4Text;
     private Choice correctAnswerChoice;
+    private static ColumnSpec[] columnSpecs = Constants.columnSpecs;
+    private static RowSpec[] rowSpecs = Constants.rowSpecs;
 
 
 
@@ -25,30 +33,7 @@ public class QuestionPanel extends JPanel {
      * Create the panel.
      */
     public QuestionPanel() {
-        setLayout(new FormLayout(new ColumnSpec[] {
-                FormSpecs.RELATED_GAP_COLSPEC,
-                FormSpecs.DEFAULT_COLSPEC,
-                FormSpecs.RELATED_GAP_COLSPEC,
-                ColumnSpec.decode("default:grow"),},
-                new RowSpec[] {
-                        FormSpecs.RELATED_GAP_ROWSPEC,
-                        FormSpecs.DEFAULT_ROWSPEC,
-                        FormSpecs.RELATED_GAP_ROWSPEC,
-                        FormSpecs.DEFAULT_ROWSPEC,
-                        FormSpecs.RELATED_GAP_ROWSPEC,
-                        FormSpecs.DEFAULT_ROWSPEC,
-                        FormSpecs.RELATED_GAP_ROWSPEC,
-                        FormSpecs.DEFAULT_ROWSPEC,
-                        FormSpecs.RELATED_GAP_ROWSPEC,
-                        FormSpecs.DEFAULT_ROWSPEC,
-                        FormSpecs.RELATED_GAP_ROWSPEC,
-                        FormSpecs.DEFAULT_ROWSPEC,
-                        FormSpecs.RELATED_GAP_ROWSPEC,
-                        FormSpecs.DEFAULT_ROWSPEC,
-                        FormSpecs.RELATED_GAP_ROWSPEC,
-                        FormSpecs.DEFAULT_ROWSPEC,
-                        FormSpecs.RELATED_GAP_ROWSPEC,
-                        FormSpecs.DEFAULT_ROWSPEC,}));
+        setLayout(new FormLayout(columnSpecs,rowSpecs));
 
         JLabel lblQuestion = new JLabel("Question:");
         add(lblQuestion, "2, 2, right, default");

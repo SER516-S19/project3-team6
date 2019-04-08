@@ -6,22 +6,13 @@ import view.panels.QuizCreationPanel;
 
 import javax.swing.*;
 
+
+/**
+ * Initializing the Main JFrame Window class for the application.
+ * @author Abhinab Mohanty GIT ID: 53
+ *
+ */
 public class PanelFactory {
-    public static int state = 1;
-    /**
-     * default serial version id
-     */
-    //private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor to perform tasks on initialization
-     * @param
-     */
-    public PanelFactory() {
-
-    }
-
-
     /**
      * Factory method which takes name of the panel as argument and returns the panel after creating it
      * @param componentName

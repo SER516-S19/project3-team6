@@ -4,6 +4,15 @@ import constant.Constants;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+
+/**
+ * Initializing the Main JFrame Window class for the application.
+ * @author Abhinab Mohanty GIT ID: 53
+ *
+ */
 
 
 public class MainFrame extends JFrame {
@@ -17,14 +26,12 @@ public class MainFrame extends JFrame {
     private static JComponent quizPanel;
     private static JComponent currentPanel = null;
     private static JPanel containerPanel;
-    private static int headPanelHeight = 125;
-    private static int headPanelWidth = 125;
+    private static int frameHeight = 1000;
+    private static int frameWidth = 1000;
 
 
-
-
-    /**
-     * Initializes all the component of the text editor and sets up the layout
+    /**+
+     * Singleton Instance to ensure single running instance of Professor App
      */
     private MainFrame() {
         setTitle(Constants.APP_TITLE);
@@ -41,8 +48,17 @@ public class MainFrame extends JFrame {
         //Keeps track of the currentPanel being displayed
         currentPanel = menuPanel;
 
-        this.setSize(1000,1000);
+        this.setSize(frameWidth,frameHeight);
         this.add(containerPanel);
+
+        //Stop Application on Window Closing
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+
         this.setVisible(true);
 
     }
@@ -72,6 +88,10 @@ public class MainFrame extends JFrame {
         setCurrentPanel(containerPanel);
     }
 
+    /**+
+     * Shows Dialog Box on quiz storage completion
+     * @param message
+     */
     public static void showMessage(String message){
         JOptionPane.showMessageDialog(mainFrame, message);
 

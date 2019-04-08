@@ -16,9 +16,11 @@ import java.io.IOException;
 
 public class FileSaveService {
     String filePath;
+    String dirPath;
     public FileSaveService(JSONObject obj, String fileName) {
         // Get Filepath for Quizzes Directory
         File quizFileDir = new File("src/../../Quizzes");
+        dirPath = quizFileDir.getAbsolutePath();
         if (!quizFileDir.exists()) {
             System.out.println("creating directory: " + quizFileDir.getName());
             boolean result = false;
@@ -33,20 +35,20 @@ public class FileSaveService {
             }
             if(result) {
                 System.out.println("DIR created");
-                    writeFile(obj,fileName);
+                    writeFile(obj,fileName,dirPath);
             }
         }else
-            writeFile(obj,fileName);
+            writeFile(obj,fileName,dirPath);
 
     }
 
-    private void writeFile(JSONObject obj, String fileName) {
+    private void writeFile(JSONObject obj, String fileName,String dirPath) {
         try (FileWriter file = new FileWriter("src/../../Quizzes/"+fileName+".json")) {
             filePath = "src/../../Quizzes/"+fileName+".json";
             file.write(obj.toJSONString());
             System.out.println("Successfully Copied JSON Object to File...");
             System.out.println("\nJSON Object: " + obj);
-            checkFileSuccess(obj,filePath);
+            checkFileSuccess(obj,filePath,dirPath);
 
 
         } catch (IOException  e) {
@@ -54,10 +56,10 @@ public class FileSaveService {
         }
     }
 
-    private void checkFileSuccess(JSONObject obj,String filePath){
+    private void checkFileSuccess(JSONObject obj, String filePath, String dirPath){
         File checkFile = new File(filePath);
         if(checkFile.exists())
-            new ChangeStateListener().actionPerformed(new ActionEvent(obj,400,"Successfully Created Quiz"));
+            new ChangeStateListener().actionPerformed(new ActionEvent(obj,400,"File "+checkFile.getName()+" Successfully Created at: "+dirPath));
         else
             new ChangeStateListener().actionPerformed(new ActionEvent(obj,202,"File Not Found!! Error Occurred"));
     }

@@ -89,11 +89,12 @@ public class MainFrame extends JFrame {
     }
 
     /**+
-     * Shows Dialog Box on quiz storage completion
+     * Shows Dialog Box on quiz storage completion and exit safely
      * @param message
      */
     public static void showMessage(String message){
         JOptionPane.showMessageDialog(mainFrame, message);
+        System.exit(0);
 
     }
 

@@ -15,8 +15,8 @@ import java.io.IOException;
  */
 
 public class FileSaveService {
-    String filePath;
-    String dirPath;
+    private String filePath;
+    private String dirPath;
     public FileSaveService(JSONObject obj, String fileName) {
         // Get Filepath for Quizzes Directory
         File quizFileDir = new File("src/../../Quizzes");
@@ -48,12 +48,12 @@ public class FileSaveService {
             file.write(obj.toJSONString());
             System.out.println("Successfully Copied JSON Object to File...");
             System.out.println("\nJSON Object: " + obj);
-            checkFileSuccess(obj,filePath,dirPath);
-
 
         } catch (IOException  e) {
             e.printStackTrace();
         }
+
+        checkFileSuccess(obj,filePath,dirPath);
     }
 
     private void checkFileSuccess(JSONObject obj, String filePath, String dirPath){

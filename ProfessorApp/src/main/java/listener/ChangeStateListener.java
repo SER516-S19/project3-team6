@@ -7,8 +7,8 @@ import view.panels.QuizCreationPanel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static view.MainFrame.setQuizPanel;
-import static view.MainFrame.showMessage;
+
+import static view.MainFrame.*;
 import static view.panels.QuizCreationPanel.addQuestionPanel;
 
 
@@ -29,15 +29,24 @@ public class ChangeStateListener implements ActionListener {
                 setQuizPanel();
             }else if(buttonPressed.getText().equalsIgnoreCase(Constants.ADD_QUESTION)){
                 addQuestionPanel();
+            }else if(buttonPressed.getText().equalsIgnoreCase(Constants.BACK)){
+                handleBackAction();
             }else if(buttonPressed.getText().equalsIgnoreCase(Constants.SUBMIT)){
                 QuestionsController questionsController = QuestionsController.getQuestionsController();
                 QuizCreationPanel quizCreationPanel = QuizCreationPanel.getQuizCreationPanel();
 
-                questionsController.setQuizName(quizCreationPanel.getQuizName());
-                questionsController.setQuestionPanelList(quizCreationPanel.getQuestions());
+                //Check if Required fields are Empty
+                if(quizCreationPanel.getQuizName().isEmpty())
+                    showError(Constants.EMPTY_ERROR);
+
+                else{
+                    questionsController.setQuizName(quizCreationPanel.getQuizName());
+                    questionsController.setQuestionPanelList(quizCreationPanel.getQuestions());
+
+                    questionsController.updateModel();
+                }
 
 
-                questionsController.updateModel();
             }
 
         }else if(actionSource instanceof JSONObject){

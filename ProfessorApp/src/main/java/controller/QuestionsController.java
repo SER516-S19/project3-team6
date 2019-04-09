@@ -10,7 +10,7 @@ import java.util.Map;
 
 
 /**
- * Initializing the Main JFrame Window class for the application.
+ * The question Controller to extract quiz and question info.
  * @author Abhinab Mohanty GIT ID: 53
  *
  */

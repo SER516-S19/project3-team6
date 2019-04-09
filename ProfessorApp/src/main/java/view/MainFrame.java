@@ -1,6 +1,7 @@
 package view;
 
 import constant.Constants;
+import view.panels.QuizCreationPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -94,8 +95,31 @@ public class MainFrame extends JFrame {
      */
     public static void showMessage(String message){
         JOptionPane.showMessageDialog(mainFrame, message);
-        System.exit(0);
+    }
+    public static void showError(String message){
+        JOptionPane.showMessageDialog(mainFrame, message);
+    }
 
+    public static void handleBackAction(){
+        boolean confirmBack = showConfirmationPanel();
+
+        if(confirmBack) {
+            CardLayout cardLayout = (CardLayout) containerPanel.getLayout();
+            cardLayout.show(containerPanel, Constants.MENU_PANEL);
+            containerPanel.remove(quizPanel);
+            quizPanel = QuizCreationPanel.getNewQuizCreationPanel();
+            containerPanel.add(quizPanel, Constants.QUIZ_PANEL);
+            setCurrentPanel(containerPanel);
+        }
+    }
+
+    private static boolean showConfirmationPanel() {
+        int dialogResult = JOptionPane.showConfirmDialog(mainFrame, Constants.WARNING_MESSAGE, Constants.WARNING_TITLE, JOptionPane.YES_NO_OPTION);
+        if(dialogResult == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

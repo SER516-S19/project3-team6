@@ -12,7 +12,7 @@ import java.awt.*;
 
 
 /**
- * Initializing the Main JFrame Window class for the application.
+ * Initializing the individual Question Panel.
  * @author Abhinab Mohanty GIT ID: 53
  *
  */

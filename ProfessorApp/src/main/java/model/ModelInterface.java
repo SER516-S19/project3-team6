@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 /**
- * Initializing the Main JFrame Window class for the application.
+ * The Model Interface for the model classes to implement.
  * @author Abhinab Mohanty GIT ID: 53
  *
  */

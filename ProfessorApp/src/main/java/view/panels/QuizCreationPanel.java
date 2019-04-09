@@ -13,14 +13,14 @@ import java.util.List;
 
 
 /**
- * Initializing the Main JFrame Window class for the application.
+ * Initializing the Quiz Creation Panel.
  * @author Abhinab Mohanty GIT ID: 53
  *
  */
 public class QuizCreationPanel extends JPanel{
     private static List<QuestionPanel> questions;
     private static JTextField quizNameText;
-    private static JButton btnAddQuestion,btnSubmit;
+    private static JButton btnAddQuestion,btnSubmit,btnBack;
     private static QuizCreationPanel quizCreationPanel = null;
     private static JScrollPane containerPane;
     private static JPanel listDisplayPanel;
@@ -39,12 +39,14 @@ public class QuizCreationPanel extends JPanel{
         add(quizNameText, "4, 2, left, default");
         quizNameText.setColumns(10);
 
+        btnBack = getBackButton();
+        add(btnBack, "2, 4, default, fill");
 
         btnAddQuestion = getBtnAddQuestion();
-        add(btnAddQuestion, "2, 4, left, default");
+        add(btnAddQuestion, "2, 6, left, default");
 
         btnSubmit = getBtnSubmit();
-        add(btnSubmit, "4, 4, right, default");
+        add(btnSubmit, "4, 6, right, default");
 
         listDisplayPanel = new JPanel();
         listDisplayPanel.setLayout(new BoxLayout(listDisplayPanel,BoxLayout.Y_AXIS));
@@ -52,7 +54,7 @@ public class QuizCreationPanel extends JPanel{
         containerPane = new JScrollPane(listDisplayPanel);
         containerPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-        add(containerPane, "4, 6, default, center");
+        add(containerPane, "4, 8, default, center");
         quizCreationPanel = this;
     }
 
@@ -73,6 +75,11 @@ public class QuizCreationPanel extends JPanel{
             return quizCreationPanel;
     }
 
+    public static QuizCreationPanel getNewQuizCreationPanel(){
+        quizCreationPanel = new QuizCreationPanel();
+        return quizCreationPanel;
+    }
+
     private static JButton getBtnAddQuestion(){
         JButton addQuestionButton = new JButton(Constants.ADD_QUESTION);
         addQuestionButton.setFocusPainted(false);
@@ -85,6 +92,13 @@ public class QuizCreationPanel extends JPanel{
         submitButton.setFocusPainted(false);
         submitButton.addActionListener(new ChangeStateListener());
         return submitButton;
+    }
+
+    private static JButton getBackButton(){
+        JButton backButton = new JButton(Constants.BACK);
+        backButton.setFocusPainted(false);
+        backButton.addActionListener(new ChangeStateListener());
+        return backButton;
     }
 
     public static void addQuestionPanel(){

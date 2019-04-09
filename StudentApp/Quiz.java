@@ -25,12 +25,15 @@ class QuizFrame extends  JFrame
         quizPanel.setLayout(boxLayout);
         //TODO : Navigation button
         QuizDAO dao = QuizDAO.getInstance();
-        JButton nextButton=new JButton(">");
+        JButton nextButton=new JButton("Next");
         JButton giveupButton=new JButton("Give Up");
+        JButton submitButton = new JButton("Submit");
         nextButton.setBounds(300,350,95,30);
         add(nextButton);
         giveupButton.setBounds(200,350,95,30);
         add(giveupButton);
+        submitButton.setBounds(100,350,95,30);
+        add(submitButton);
         giveupButton.addActionListener( new ActionListener()
         {
 
@@ -69,46 +72,34 @@ class QuizFrame extends  JFrame
 
         nextButton.addActionListener( new ActionListener()
         {
+                int questionnumber = 1;
+            public void actionPerformed(ActionEvent e)
+            {
+
+                questionLabel.setText(dao.getQuestion(questionnumber+1));
+                optionA.setText(dao.getOptionA(questionnumber+1));
+                optionB.setText((dao.getOptionB(questionnumber+1)));
+                optionC.setText((dao.getOptionC(questionnumber+1)));
+                optionD.setText((dao.getOptionD(questionnumber+1)));
+
+
+
+
+                questionnumber++;
+                if(questionnumber == 3)
+                    questionnumber = 0;
+            }
+        });
+
+        submitButton.addActionListener( new ActionListener()
+        {
 
             public void actionPerformed(ActionEvent e)
             {
-              quizPanel.removeAll();
-              quizPanel.revalidate();
-              quizPanel.repaint();
-
-               // JButton giveupButton=new JButton("Give Up");
-                //giveupButton.setBounds(200,350,95,30);
-                //add(giveupButton);
-
-                int questionnumber = 2;
-                String question = dao.getQuestion(questionnumber);
-
-                System.out.println(question);
-                questionLabel = new JLabel (question);
-                optionA = new JRadioButton(dao.getOptionA(questionnumber));
-                optionB = new JRadioButton(dao.getOptionB(questionnumber));
-                optionC = new JRadioButton(dao.getOptionC(questionnumber));
-                optionD = new JRadioButton(dao.getOptionD(questionnumber));
-
-                quizPanel.add(questionLabel);
-                quizPanel.add(optionA);
-                quizPanel.add(optionB);
-                quizPanel.add(optionC);
-                quizPanel.add(optionD);
-
-                //TODO: Add Action Listener to each Radio Button.
-                ButtonGroup ansbuttonGroup = new ButtonGroup();
-                ansbuttonGroup.add(optionA);
-                ansbuttonGroup.add(optionB);
-                ansbuttonGroup.add(optionC);
-                ansbuttonGroup.add(optionD);
-
-
-
-
-
+                //System.exit(0);
             }
         });
+
         add(quizPanel);
         setVisible(true);
         setSize(400,400);

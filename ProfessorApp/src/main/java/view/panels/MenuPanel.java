@@ -9,7 +9,7 @@ import java.awt.*;
 
 
 /**
- * Initializing the Main JFrame Window class for the application.
+ * Initializing the Main Menu Panel for the app.
  * @author Abhinab Mohanty GIT ID: 53
  *
  */

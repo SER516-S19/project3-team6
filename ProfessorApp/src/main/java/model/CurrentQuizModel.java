@@ -10,7 +10,7 @@ import service.FileSaveService;
 
 
 /**
- * Initializing the Main JFrame Window class for the application.
+ * The Main File Model for the Quiz.
  * @author Abhinab Mohanty GIT ID: 53
  *
  */

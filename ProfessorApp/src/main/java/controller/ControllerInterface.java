@@ -2,7 +2,7 @@ package controller;
 
 
 /**
- * Initializing the Main JFrame Window class for the application.
+ * The Interface for Controller classes
  * @author Abhinab Mohanty GIT ID: 53
  *
  */

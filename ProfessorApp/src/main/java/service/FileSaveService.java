@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 /**
- * Initializing the Main JFrame Window class for the application.
+ * The Main File Save service for the application.
  * @author Abhinab Mohanty GIT ID: 53
  *
  */

@@ -9,6 +9,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.MatteBorder;
 
 
 /**
@@ -36,16 +40,22 @@ public class QuestionPanel extends JPanel {
         setLayout(new FormLayout(columnSpecs,rowSpecs));
 
         JLabel lblQuestion = new JLabel("Question:");
+        lblQuestion.setFont(new Font("Monaco", Font.BOLD, 14));
+        lblQuestion.setForeground(new Color(47, 79, 79));
         add(lblQuestion, "2, 2, right, default");
 
         questionText = new JTextField();
-        add(questionText, "4, 2, fill, default");
+        add(questionText, "4, 2, default, fill");
         questionText.setColumns(10);
 
         JLabel lblOptions = new JLabel("Options:");
+        lblOptions.setFont(new Font("Monaco", Font.PLAIN, 13));
+        lblOptions.setForeground(new Color(47, 79, 79));
         add(lblOptions, "2, 4");
 
         JLabel lblOption = new JLabel("Option 1:");
+        lblOption.setFont(new Font("Monaco", Font.PLAIN, 13));
+        lblOption.setForeground(new Color(47, 79, 79));
         add(lblOption, "2, 6, right, default");
 
         option1Text = new JTextField();
@@ -53,6 +63,8 @@ public class QuestionPanel extends JPanel {
         option1Text.setColumns(10);
 
         JLabel lblOption_1 = new JLabel("Option 2:");
+        lblOption_1.setForeground(new Color(47, 79, 79));
+        lblOption_1.setFont(new Font("Monaco", Font.PLAIN, 13));
         add(lblOption_1, "2, 8, right, default");
 
         option2Text = new JTextField();
@@ -60,6 +72,8 @@ public class QuestionPanel extends JPanel {
         option2Text.setColumns(10);
 
         JLabel lblOption_2 = new JLabel("Option 3:");
+        lblOption_2.setForeground(new Color(47, 79, 79));
+        lblOption_2.setFont(new Font("Monaco", Font.PLAIN, 13));
         add(lblOption_2, "2, 10, right, default");
 
         option3Text = new JTextField();
@@ -67,6 +81,8 @@ public class QuestionPanel extends JPanel {
         option3Text.setColumns(10);
 
         JLabel lblOption_3 = new JLabel("Option 4:");
+        lblOption_3.setFont(new Font("Monaco", Font.PLAIN, 13));
+        lblOption_3.setForeground(new Color(47, 79, 79));
         add(lblOption_3, "2, 12, right, default");
 
         option4Text = new JTextField();
@@ -76,6 +92,8 @@ public class QuestionPanel extends JPanel {
         initializeOptions();
 
         JLabel lblCorrectAnswer = new JLabel("Correct Answer");
+        lblCorrectAnswer.setForeground(new Color(47, 79, 79));
+        lblCorrectAnswer.setFont(new Font("Monaco", Font.BOLD, 14));
         add(lblCorrectAnswer, "2, 14");
 
         correctAnswerChoice = new Choice();
@@ -87,11 +105,11 @@ public class QuestionPanel extends JPanel {
 
     private void initializeOptions() {
         Border border = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
-        questionText.setBorder(border);
-        option1Text.setBorder(border);
-        option2Text.setBorder(border);
-        option3Text.setBorder(border);
-        option4Text.setBorder(border);
+        questionText.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
+        option1Text.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
+        option2Text.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
+        option3Text.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
+        option4Text.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
     }
 
     public String getQuestionText() {

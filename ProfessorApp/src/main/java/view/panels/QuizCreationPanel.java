@@ -10,6 +10,11 @@ import javax.swing.border.EtchedBorder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.SystemColor;
 
 
 /**
@@ -28,15 +33,18 @@ public class QuizCreationPanel extends JPanel{
     private static RowSpec[] rowSpecs = Constants.rowSpecs;
 
     private QuizCreationPanel() {
+    	setForeground(new Color(0, 0, 0));
         questions = new ArrayList<>();
         setLayout(new FormLayout(columnSpecs, rowSpecs));
 
         JLabel quizName = new JLabel("Quiz Name :");
+        quizName.setForeground(new Color(47, 79, 79));
+        quizName.setFont(new Font("Monaco", Font.BOLD, 18));
         add(quizName, "2, 2");
 
         quizNameText = new JTextField();
-        quizNameText.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        add(quizNameText, "4, 2, left, default");
+        quizNameText.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
+        add(quizNameText, "4, 2");
         quizNameText.setColumns(10);
 
         btnBack = getBackButton();
@@ -61,6 +69,8 @@ public class QuizCreationPanel extends JPanel{
 
     private  static void addFooterForm(){
         QuestionPanel questionPanel = new QuestionPanel();
+        questionPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(154, 154, 154), new Color(154, 154, 154), new Color(154, 154, 154), new Color(154, 154, 154)));
+        questionPanel.setForeground(new Color(47, 79, 79));
         listDisplayPanel.add(questionPanel);
         //Add in Class DataStructure
         questions.add(questionPanel);

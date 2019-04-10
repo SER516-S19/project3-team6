@@ -1,7 +1,6 @@
 package view;
 
 import constant.Constants;
-import view.panels.QuizCreationPanel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package view.panels;
+package view;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -7,12 +7,9 @@ import constant.Constants;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.MatteBorder;
 
 
 /**
@@ -38,10 +35,13 @@ public class QuestionPanel extends JPanel {
      */
     public QuestionPanel() {
         setLayout(new FormLayout(columnSpecs,rowSpecs));
+        Color uniformUIColor = new Color(47, 79, 79);
+        Font boldFont = new Font("Monaco", Font.BOLD, 14);
+        Font plainFont = new Font("Monaco", Font.PLAIN, 13);
 
         JLabel lblQuestion = new JLabel("Question:");
-        lblQuestion.setFont(new Font("Monaco", Font.BOLD, 14));
-        lblQuestion.setForeground(new Color(47, 79, 79));
+        lblQuestion.setFont(boldFont);
+        lblQuestion.setForeground(uniformUIColor);
         add(lblQuestion, "2, 2, right, default");
 
         questionText = new JTextField();
@@ -49,13 +49,13 @@ public class QuestionPanel extends JPanel {
         questionText.setColumns(10);
 
         JLabel lblOptions = new JLabel("Options:");
-        lblOptions.setFont(new Font("Monaco", Font.PLAIN, 13));
-        lblOptions.setForeground(new Color(47, 79, 79));
+        lblOptions.setFont(plainFont);
+        lblOptions.setForeground(uniformUIColor);
         add(lblOptions, "2, 4");
 
         JLabel lblOption = new JLabel("Option 1:");
-        lblOption.setFont(new Font("Monaco", Font.PLAIN, 13));
-        lblOption.setForeground(new Color(47, 79, 79));
+        lblOption.setFont(plainFont);
+        lblOption.setForeground(uniformUIColor);
         add(lblOption, "2, 6, right, default");
 
         option1Text = new JTextField();
@@ -63,8 +63,8 @@ public class QuestionPanel extends JPanel {
         option1Text.setColumns(10);
 
         JLabel lblOption_1 = new JLabel("Option 2:");
-        lblOption_1.setForeground(new Color(47, 79, 79));
-        lblOption_1.setFont(new Font("Monaco", Font.PLAIN, 13));
+        lblOption_1.setForeground(uniformUIColor);
+        lblOption_1.setFont(plainFont);
         add(lblOption_1, "2, 8, right, default");
 
         option2Text = new JTextField();
@@ -72,8 +72,8 @@ public class QuestionPanel extends JPanel {
         option2Text.setColumns(10);
 
         JLabel lblOption_2 = new JLabel("Option 3:");
-        lblOption_2.setForeground(new Color(47, 79, 79));
-        lblOption_2.setFont(new Font("Monaco", Font.PLAIN, 13));
+        lblOption_2.setForeground(uniformUIColor);
+        lblOption_2.setFont(plainFont);
         add(lblOption_2, "2, 10, right, default");
 
         option3Text = new JTextField();
@@ -81,8 +81,8 @@ public class QuestionPanel extends JPanel {
         option3Text.setColumns(10);
 
         JLabel lblOption_3 = new JLabel("Option 4:");
-        lblOption_3.setFont(new Font("Monaco", Font.PLAIN, 13));
-        lblOption_3.setForeground(new Color(47, 79, 79));
+        lblOption_3.setFont(plainFont);
+        lblOption_3.setForeground(uniformUIColor);
         add(lblOption_3, "2, 12, right, default");
 
         option4Text = new JTextField();
@@ -92,8 +92,8 @@ public class QuestionPanel extends JPanel {
         initializeOptions();
 
         JLabel lblCorrectAnswer = new JLabel("Correct Answer");
-        lblCorrectAnswer.setForeground(new Color(47, 79, 79));
-        lblCorrectAnswer.setFont(new Font("Monaco", Font.BOLD, 14));
+        lblCorrectAnswer.setForeground(uniformUIColor);
+        lblCorrectAnswer.setFont(boldFont);
         add(lblCorrectAnswer, "2, 14");
 
         correctAnswerChoice = new Choice();
@@ -104,12 +104,13 @@ public class QuestionPanel extends JPanel {
     }
 
     private void initializeOptions() {
-        Border border = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
-        questionText.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
-        option1Text.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
-        option2Text.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
-        option3Text.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
-        option4Text.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
+        Color borderColor = new Color(192, 192, 192);
+        Border border = new SoftBevelBorder(BevelBorder.LOWERED, borderColor, borderColor, borderColor, borderColor);
+        questionText.setBorder(border);
+        option1Text.setBorder(border);
+        option2Text.setBorder(border);
+        option3Text.setBorder(border);
+        option4Text.setBorder(border);
     }
 
     public String getQuestionText() {

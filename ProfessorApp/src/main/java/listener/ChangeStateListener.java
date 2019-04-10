@@ -3,13 +3,13 @@ package listener;
 import constant.Constants;
 import controller.QuestionsController;
 import org.json.simple.JSONObject;
-import view.panels.QuizCreationPanel;
+import view.QuizCreationPanel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static view.MainFrame.*;
-import static view.panels.QuizCreationPanel.addQuestionPanel;
+import static view.QuizCreationPanel.addQuestionPanel;
 
 
 

@@ -23,6 +23,7 @@ public class Constants {
     public static final String OPTION_2 = "Option 2";
     public static final String OPTION_3 = "Option 3";
     public static final String OPTION_4 = "Option 4";
+    public static final String QUIZ_NAME = "Quiz Name :";
     public static final String[] OPTIONS = new String[]{OPTION_1,OPTION_2,OPTION_3,OPTION_4};
     public static final String WARNING_MESSAGE = "All Unsaved Changes will be lost. Are you sure you want to go back?";
     public static final String WARNING_TITLE = "Confirm Action";

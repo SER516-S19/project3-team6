@@ -1,7 +1,7 @@
 package controller;
 
 import model.CurrentQuizModel;
-import view.panels.QuestionPanel;
+import view.QuestionPanel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,12 +1,12 @@
-package view.panels;
+package view;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 import constant.Constants;
 import listener.ChangeStateListener;
+
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,6 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
-import java.awt.SystemColor;
 
 
 /**
@@ -33,17 +32,20 @@ public class QuizCreationPanel extends JPanel{
     private static RowSpec[] rowSpecs = Constants.rowSpecs;
 
     private QuizCreationPanel() {
-    	setForeground(new Color(0, 0, 0));
+    	setForeground(Color.black);
         questions = new ArrayList<>();
         setLayout(new FormLayout(columnSpecs, rowSpecs));
 
-        JLabel quizName = new JLabel("Quiz Name :");
-        quizName.setForeground(new Color(47, 79, 79));
-        quizName.setFont(new Font("Monaco", Font.BOLD, 18));
+        Color foreGroundColor = new Color(47, 79, 79);
+        Font boldFont = new Font("Monaco", Font.BOLD, 18);
+        JLabel quizName = new JLabel(Constants.QUIZ_NAME);
+        quizName.setForeground(foreGroundColor);
+        quizName.setFont(boldFont);
         add(quizName, "2, 2");
 
+        Color textColor = new Color(192, 192, 192);
         quizNameText = new JTextField();
-        quizNameText.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192), new Color(192, 192, 192)));
+        quizNameText.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, textColor, textColor, textColor, textColor));
         add(quizNameText, "4, 2");
         quizNameText.setColumns(10);
 
@@ -69,8 +71,10 @@ public class QuizCreationPanel extends JPanel{
 
     private  static void addFooterForm(){
         QuestionPanel questionPanel = new QuestionPanel();
-        questionPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(154, 154, 154), new Color(154, 154, 154), new Color(154, 154, 154), new Color(154, 154, 154)));
-        questionPanel.setForeground(new Color(47, 79, 79));
+        Color borderColor = new Color(154, 154, 154);
+        Color foreGroundColor = new Color(47, 79, 79);
+        questionPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED,borderColor, borderColor, borderColor, borderColor));
+        questionPanel.setForeground(foreGroundColor);
         listDisplayPanel.add(questionPanel);
         //Add in Class DataStructure
         questions.add(questionPanel);

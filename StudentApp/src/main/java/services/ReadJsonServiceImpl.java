@@ -33,8 +33,9 @@ public class ReadJsonServiceImpl {
 	}
 
 	public static List<Quiz> getJsonData(String jsonFileName) throws IOException, JSONException {
+		String jsonFilePath = ReadJsonServiceFactory.getDirPath() + jsonFileName;
 		List<Quiz> quizList = new ArrayList<Quiz>();
-		String jsonString =  readJsonFile(jsonFileName);
+		String jsonString =  readJsonFile(jsonFilePath);
 		JSONObject jsonObject = new JSONObject(jsonString.substring(jsonString.indexOf('{')));
 		JSONArray jsonArray = (JSONArray) jsonObject.get("questions");
 
@@ -71,4 +72,5 @@ public class ReadJsonServiceImpl {
 		}
 		return jsonString;
 	}
+	
 }

@@ -44,18 +44,16 @@ public class QuestionDisplayPanel extends JPanel {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBackground(new Color(255, 255, 255));
         this.setBorder(new EmptyBorder(10, 10, 10, 10));
-        //this.setLayout(new GridBagLayout());
-		Dimension buttonDimension = new Dimension(150, 50);
+        Dimension buttonDimension = new Dimension(150, 50);
         Color buttonBackGround = new Color(245, 255, 250);
         Color buttonForeGround = new Color(0, 128, 128);
         Font buttonFont = new Font("Monospaced", Font.PLAIN, 24);
 		
-		JButton nextButton=new JButton("Next");
+		JButton nextButton=new JButton(Constants.NEXT_BUTTON);
 		nextButton.setBackground(buttonBackGround);
 		nextButton.setFont(buttonFont);
 		nextButton.setForeground(buttonForeGround);
 		nextButton.setPreferredSize(buttonDimension);
-		nextButton.addActionListener(new ChangeStateListener());
 		nextButton.setFocusPainted(false);
 		
 		JButton giveupButton=new JButton(Constants.GIVEUP_BUTTON);
@@ -66,17 +64,12 @@ public class QuestionDisplayPanel extends JPanel {
 		giveupButton.addActionListener(new ChangeStateListener());
 		giveupButton.setFocusPainted(false);
         
-		JButton submitButton = new JButton("Submit");
+		JButton submitButton = new JButton(Constants.SUBMIT_BUTTON);
 		submitButton.setBackground(buttonBackGround);
 		submitButton.setFont(buttonFont);
 		submitButton.setForeground(buttonForeGround);
 		submitButton.setPreferredSize(buttonDimension);
-		submitButton.addActionListener(new ChangeStateListener());
 		submitButton.setFocusPainted(false);
-        
-//		nextButton.setBounds(300,350,95,30);
-//		giveupButton.setBounds(200,350,95,30);
-//		submitButton.setBounds(100,350,95,30);
 
 		if (questions.size() == 0) {
 			StudentMainFrame.closeWindow();
@@ -96,7 +89,6 @@ public class QuestionDisplayPanel extends JPanel {
 		this.add(optionC);
 		this.add(optionD);
 
-		//TODO: Add Action Listener to each Radio Button.
 		ButtonGroup ansbuttonGroup = new ButtonGroup();
 		ansbuttonGroup.add(optionA);
 		ansbuttonGroup.add(optionB);
@@ -104,18 +96,54 @@ public class QuestionDisplayPanel extends JPanel {
 		ansbuttonGroup.add(optionD);
 		correctAnswer = questions.get(counter).getCorrectAnswer();
 
-		giveupButton.addActionListener(new ChangeStateListener());
-		
-		JPanel jp = new JPanel();
-		BoxLayout boxLayout1 = new BoxLayout(jp,BoxLayout.X_AXIS);
-		jp.add(submitButton);
-		jp.add(giveupButton);
-		jp.add(nextButton);
-		this.add(jp);
+		JPanel buttonPanel = new JPanel();
+		BoxLayout boxLayout1 = new BoxLayout(buttonPanel,BoxLayout.X_AXIS);
+		buttonPanel.add(submitButton);
+		buttonPanel.add(giveupButton);
+		buttonPanel.add(nextButton);
+		this.add(buttonPanel);
 
 		this.setSize(400,400);
 
 		nextButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean isCorrectAnsGiven = false;
+				if (optionA.isSelected()) {
+					if (optionA.getText().equals(correctAnswer)) {
+						isCorrectAnsGiven = true;
+					}
+
+				} else if (optionB.isSelected()) {
+					if (optionB.getText().equals(correctAnswer)) {
+						isCorrectAnsGiven = true;
+					}
+				} else if (optionC.isSelected()) {
+					if (optionC.getText().equals(correctAnswer)) {
+						isCorrectAnsGiven = true;
+					}
+				} else if (optionD.isSelected()) {
+					if (optionD.getText().equals(correctAnswer)) {
+						isCorrectAnsGiven = true;
+					}
+				}
+
+				if (isCorrectAnsGiven) {
+					questions.remove(counter);
+					questionCount = counter;
+				} else {
+					questionCount = counter + 1;
+				}
+				if (questionCount >= questions.size()) {
+					questionCount = 0;
+				} else if (questions.size() == 0){
+					StudentMainFrame.closeWindow();
+				}
+				StudentMainFrame.setQuestionDisplayPanel(questionCount);
+			}
+		});
+		
+		submitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boolean isCorrectAnsGiven = false;

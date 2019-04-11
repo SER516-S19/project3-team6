@@ -17,9 +17,7 @@ import java.awt.*;
 
 @SuppressWarnings("serial")
 public class QuizSelectionPanel extends JPanel {
-	//private JPanel panel;
 	private JComboBox comboBox;
-	private String[] listOfQuizzes = {"Quiz1", "Quiz2"};
 
 	@SuppressWarnings("rawtypes")
 	public QuizSelectionPanel(){

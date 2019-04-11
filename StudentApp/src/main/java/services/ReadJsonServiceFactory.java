@@ -58,4 +58,7 @@ public class ReadJsonServiceFactory {
 		} finally {
 		}
 	}
+	public static String getDirPath() {
+		return _directoryPath;
+	}
 }

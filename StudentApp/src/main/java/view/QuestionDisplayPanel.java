@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -10,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.border.EmptyBorder;
 
 import constants.Constants;
 import controller.ChangeStateListener;
@@ -19,7 +23,7 @@ import model.Quiz;
 
 /**
  * To show Question Panel in student APP
- * @author Amit, Narendra, bijayalaxmipanda
+ * @author Amit, Narendra, bijayalaxmipanda, Amanjot Singh
  *
  */
 public class QuestionDisplayPanel extends JPanel {
@@ -38,12 +42,41 @@ public class QuestionDisplayPanel extends JPanel {
 	public void display(final int counter)
 	{
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setBackground(new Color(255, 255, 255));
+        this.setBorder(new EmptyBorder(10, 10, 10, 10));
+        //this.setLayout(new GridBagLayout());
+		Dimension buttonDimension = new Dimension(150, 50);
+        Color buttonBackGround = new Color(245, 255, 250);
+        Color buttonForeGround = new Color(0, 128, 128);
+        Font buttonFont = new Font("Monospaced", Font.PLAIN, 24);
+		
 		JButton nextButton=new JButton("Next");
+		nextButton.setBackground(buttonBackGround);
+		nextButton.setFont(buttonFont);
+		nextButton.setForeground(buttonForeGround);
+		nextButton.setPreferredSize(buttonDimension);
+		nextButton.addActionListener(new ChangeStateListener());
+		nextButton.setFocusPainted(false);
+		
 		JButton giveupButton=new JButton(Constants.GIVEUP_BUTTON);
+		giveupButton.setBackground(buttonBackGround);
+		giveupButton.setFont(buttonFont);
+		giveupButton.setForeground(buttonForeGround);
+		giveupButton.setPreferredSize(buttonDimension);
+		giveupButton.addActionListener(new ChangeStateListener());
+		giveupButton.setFocusPainted(false);
+        
 		JButton submitButton = new JButton("Submit");
-		nextButton.setBounds(300,350,95,30);
-		giveupButton.setBounds(200,350,95,30);
-		submitButton.setBounds(100,350,95,30);
+		submitButton.setBackground(buttonBackGround);
+		submitButton.setFont(buttonFont);
+		submitButton.setForeground(buttonForeGround);
+		submitButton.setPreferredSize(buttonDimension);
+		submitButton.addActionListener(new ChangeStateListener());
+		submitButton.setFocusPainted(false);
+        
+//		nextButton.setBounds(300,350,95,30);
+//		giveupButton.setBounds(200,350,95,30);
+//		submitButton.setBounds(100,350,95,30);
 
 		if (questions.size() == 0) {
 			StudentMainFrame.closeWindow();

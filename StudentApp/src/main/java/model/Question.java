@@ -21,11 +21,11 @@ public class Question {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getCorrectAnswer() {
-		return correctAnswer;
-	}
 	public void setCorrectAnswer(String correctAnswer) {
 		this.correctAnswer = correctAnswer;
+	}
+	public String getCorrectAnswer() {
+		return correctAnswer;
 	}
 	public String[] getOptions() {
 		return options;

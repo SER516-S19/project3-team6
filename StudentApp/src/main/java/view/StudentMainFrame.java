@@ -23,8 +23,8 @@ public class StudentMainFrame extends JFrame {
 	private static JComponent questionPanel;
 	private static JComponent currentPanel = null;
 	private static JPanel containerPanel;
-	private static int frameHeight = 700;
-	private static int frameWidth = 700;
+	private static int frameHeight = 500;
+	private static int frameWidth = 500;
 
 
 	/**+

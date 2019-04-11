@@ -2,7 +2,10 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -53,57 +56,70 @@ public class QuestionDisplayPanel extends JPanel {
 		nextButton.setBackground(buttonBackGround);
 		nextButton.setFont(buttonFont);
 		nextButton.setForeground(buttonForeGround);
-		nextButton.setPreferredSize(buttonDimension);
+
+		nextButton.setSize(buttonDimension);
+
 		nextButton.setFocusPainted(false);
 		
 		JButton giveupButton=new JButton(Constants.GIVEUP_BUTTON);
 		giveupButton.setBackground(buttonBackGround);
 		giveupButton.setFont(buttonFont);
 		giveupButton.setForeground(buttonForeGround);
-		giveupButton.setPreferredSize(buttonDimension);
-		giveupButton.addActionListener(new ChangeStateListener());
+		giveupButton.setSize(buttonDimension);
 		giveupButton.setFocusPainted(false);
         
 		JButton submitButton = new JButton(Constants.SUBMIT_BUTTON);
 		submitButton.setBackground(buttonBackGround);
 		submitButton.setFont(buttonFont);
 		submitButton.setForeground(buttonForeGround);
-		submitButton.setPreferredSize(buttonDimension);
-		submitButton.setFocusPainted(false);
 
+		submitButton.setSize(buttonDimension);
+		submitButton.setFocusPainted(false);
+		
 		if (questions.size() == 0) {
 			StudentMainFrame.closeWindow();
 		}
 		
 		questionLabel = new JLabel (questions.get(counter).getTitle());
+		questionLabel.setFont(buttonFont); 
 		String[] options = new String[4];
 		options = questions.get(counter).getOptions();
 		optionA = new JRadioButton(options[0]);
+		optionA.setFont(buttonFont); 
 		optionB = new JRadioButton(options[1]);
+		optionB.setFont(buttonFont);
 		optionC = new JRadioButton(options[2]);
+		optionC.setFont(buttonFont);
 		optionD = new JRadioButton(options[3]);
 
-		this.add(questionLabel);
-		this.add(optionA);
-		this.add(optionB);
-		this.add(optionC);
-		this.add(optionD);
-
-		ButtonGroup ansbuttonGroup = new ButtonGroup();
-		ansbuttonGroup.add(optionA);
-		ansbuttonGroup.add(optionB);
-		ansbuttonGroup.add(optionC);
-		ansbuttonGroup.add(optionD);
+		optionD.setFont(buttonFont);
 		correctAnswer = questions.get(counter).getCorrectAnswer();
 
-		JPanel buttonPanel = new JPanel();
-		BoxLayout boxLayout1 = new BoxLayout(buttonPanel,BoxLayout.X_AXIS);
-		buttonPanel.add(submitButton);
-		buttonPanel.add(giveupButton);
-		buttonPanel.add(nextButton);
-		this.add(buttonPanel);
+		giveupButton.addActionListener(new ChangeStateListener());
+		
+		JPanel jp = new JPanel();
+		jp.setAlignmentX( JPanel.LEFT_ALIGNMENT );		
+		jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
+		jp.setBackground(new Color(255, 255, 255));
 
-		this.setSize(400,400);
+		jp.add(questionLabel);
+		jp.add(optionA);
+		jp.add(optionB);
+		jp.add(optionC);
+		jp.add(optionD);
+		
+		
+		
+		JPanel jp1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		jp1.setAlignmentX( JPanel.LEFT_ALIGNMENT );
+		jp1.setBackground(new Color(255, 255, 255));
+		jp1.add(submitButton);
+		jp1.add(giveupButton);
+		jp1.add(nextButton);
+
+
+		this.add(jp);
+		this.add(jp1);
 
 		nextButton.addActionListener(new ActionListener() {
 			@Override

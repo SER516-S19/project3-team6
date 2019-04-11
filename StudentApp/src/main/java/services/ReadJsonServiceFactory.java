@@ -51,10 +51,8 @@ public class ReadJsonServiceFactory {
 	// all the .json files are placed
 	static {
 		try {
-			Properties fileProperties = new Properties();
-			fileProperties.load(ReadJsonServiceFactory.class.getClassLoader()
-					.getResourceAsStream("directory.properties"));
-			_directoryPath = fileProperties.getProperty("jsonDirectory");
+			File quizFileDir = new File("src/../../Quizzes/");
+			_directoryPath = quizFileDir.getCanonicalPath() + '/';
 		} catch (Throwable t) {
 			t.printStackTrace();
 		} finally {

@@ -21,6 +21,9 @@ public class Question {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public void setCorrectAnswer(String correctAnswer) {
+		this.correctAnswer = correctAnswer;
+	}
 	public String getCorrectAnswer() {
 		return correctAnswer;
 	}

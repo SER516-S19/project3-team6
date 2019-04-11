@@ -29,13 +29,10 @@ public class ReadJsonServiceImpl {
 	// list of quiz objects
 	public List<String> getJsonFileNames() throws IOException, JSONException {
 		List<String> allJsonFiles = ReadJsonServiceFactory.getAllJsonFiles();
-		System.out.println("File size:: " + allJsonFiles.size());
-
 		return allJsonFiles;
 	}
 
-	public List<Quiz> getJsonData(String jsonFileName) throws IOException, JSONException {
-		
+	public static List<Quiz> getJsonData(String jsonFileName) throws IOException, JSONException {
 		List<Quiz> quizList = new ArrayList<Quiz>();
 		String jsonString =  readJsonFile(jsonFileName);
 		JSONObject jsonObject = new JSONObject(jsonString.substring(jsonString.indexOf('{')));
@@ -56,7 +53,7 @@ public class ReadJsonServiceImpl {
 	}
 
 	// method to read a json file and return the content in a String
-	private String readJsonFile(String filename) {  
+	private static String readJsonFile(String filename) {  
 		String jsonString = "";
 		try {
 			@SuppressWarnings("resource")

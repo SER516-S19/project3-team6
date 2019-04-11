@@ -82,20 +82,19 @@ public class StudentMainFrame extends JFrame {
 		}
 		((QuestionDisplayPanel) questionPanel).display(counter);
 	}  
-	
+
 	public static void getQuestionsToDisplay() {
 		Component[] arr = dashboardPanel.getComponents();
 		String str = null;
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] instanceof JComboBox) {
 				str = ((JComboBox)arr[i]).getSelectedItem().toString();
-
 			}
 		}
 		QuestionDisplayPanel.setQuestion(str);
 
 	}
-	
+
 	public static void closeWindow() {
 		System.exit(0);
 	}

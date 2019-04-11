@@ -51,7 +51,7 @@ public class ReadJsonServiceFactory {
 	// all the .json files are placed
 	static {
 		try {
-			File quizFileDir = new File("/Users/amanjotsingh/Desktop/");
+			File quizFileDir = new File("src/../../quizzes/");
 			_directoryPath = quizFileDir.getCanonicalPath() + '/';
 		} catch (Throwable t) {
 			t.printStackTrace();

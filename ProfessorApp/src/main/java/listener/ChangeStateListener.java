@@ -5,6 +5,8 @@ import controller.QuestionsController;
 import org.json.simple.JSONObject;
 import view.QuizCreationPanel;
 import javax.swing.*;
+
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,7 +31,10 @@ public class ChangeStateListener implements ActionListener {
                 setQuizPanel();
             }else if(buttonPressed.getText().equalsIgnoreCase(Constants.ADD_QUESTION)){
                 addQuestionPanel();
-            }else if(buttonPressed.getText().equalsIgnoreCase(Constants.BACK)){
+            }else if(buttonPressed.getText().equalsIgnoreCase(Constants.EDIT_QUIZ)) {
+            	setEditQuizPanel();
+            }
+            else if(buttonPressed.getText().equalsIgnoreCase(Constants.BACK)){
                 handleBackAction();
             }else if(buttonPressed.getText().equalsIgnoreCase(Constants.SUBMIT)){
                 QuestionsController questionsController = QuestionsController.getQuestionsController();

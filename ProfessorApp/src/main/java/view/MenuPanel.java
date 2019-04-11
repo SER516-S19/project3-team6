@@ -57,6 +57,19 @@ public class MenuPanel extends JPanel {
         createQuizButton.setFocusPainted(false);
         buttons.add(createQuizButton, gbc1);
         
+        //Edit Quiz
+//        JPanel editButtons = new JPanel(new GridBagLayout());
+//        buttons.setBackground(Color.black);
+        JButton editQuizButton = new JButton();
+        editQuizButton.setBackground(buttonBackGround);
+        editQuizButton.setFont(buttonFont);
+        editQuizButton.setForeground(buttonForeGround);
+        editQuizButton.setPreferredSize(buttonDimension);
+        editQuizButton.setText(Constants.EDIT_QUIZ);
+        editQuizButton.addActionListener(new ChangeStateListener());
+        editQuizButton.setFocusPainted(false);
+        buttons.add(editQuizButton, gbc1);
+        
         GridBagConstraints gbc2 = new GridBagConstraints();
 
         gbc2.weighty = 1;

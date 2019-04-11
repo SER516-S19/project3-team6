@@ -1,6 +1,5 @@
 import javax.swing.SwingUtilities;
 
-import controller.MainController;
 import view.StudentMainFrame;
 
 /**

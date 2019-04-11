@@ -11,7 +11,7 @@ import java.awt.*;
 /**
  * To launch student Dash board
  *
- * @author Manisha, Bijaylaxmi Panda
+ * @author Manisha, Bijaylaxmi Panda, Amanjot Singh
  * @version 1.0
  */
 
@@ -23,54 +23,70 @@ public class QuizSelectionPanel extends JPanel {
 
 	@SuppressWarnings("rawtypes")
 	public QuizSelectionPanel(){
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		//setBackground(new Color(255, 255, 255));
-		setBorder(new EmptyBorder(10, 10, 10, 10));
-		setLayout(gridBagLayout);
+		setBackground(new Color(255, 255, 255));
+        setBorder(new EmptyBorder(10, 10, 10, 10));
+        setLayout(new GridBagLayout());
+		
 
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.anchor = GridBagConstraints.NORTH;
 
 
-		Font titleFont = new Font("Monospaced", Font.BOLD, 40);
-		Font buttonFont = new Font("Monospaced", Font.PLAIN, 20);
-		Dimension buttonDimension = new Dimension(300, 70);
-
-		JButton takeQuizButton = new JButton(Constants.TAKE_QUIZ);
-		//takeQuizButton.setBackground(buttonBackGround);
-		takeQuizButton.setFont(buttonFont);
-		//takeQuizButton.setForeground(buttonForeGround);
-		takeQuizButton.setPreferredSize(buttonDimension);
-		takeQuizButton.setText(Constants.TAKE_QUIZ);
-		takeQuizButton.addActionListener(new ChangeStateListener());
-		takeQuizButton.setFocusPainted(false);
-		//buttons.add(createQuizButton, gbc1);
-
-
-
-
-
-		gbc.anchor = GridBagConstraints.CENTER;
+		Font titleFont = new Font("Monaco", Font.BOLD, 50);
+        Color foreGroundColor = new Color(47, 79, 79);
+        JLabel title = new JLabel("Welcome Student");
+        title.setFont(titleFont);
+        title.setForeground(foreGroundColor);
+        title.setBackground(Color.white);
+        add(title, gbc);
+		
+        gbc.anchor = GridBagConstraints.CENTER;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
+		
+		GridBagConstraints gbc1 = new GridBagConstraints();
+		
+		Dimension buttonDimension = new Dimension(150, 50);
+        Color buttonBackGround = new Color(245, 255, 250);
+        Color buttonForeGround = new Color(0, 128, 128);
+        Font buttonFont = new Font("Monospaced", Font.PLAIN, 24);
+		
+        
+        JPanel buttons = new JPanel(new GridBagLayout());
+        buttons.setBackground(Color.black);
+        
+        
+        GridBagConstraints gbc2 = new GridBagConstraints();
 
-		JLabel pageName = new JLabel("Welcome to Student Portal", SwingConstants.CENTER);
-		JLabel selectQuizName = new JLabel("Select Quiz");
-		pageName.setFont(titleFont);
-		this.setLayout(gridBagLayout);
-		gbc.gridy = 0;
-		this.add(pageName, gbc);
-		gbc.gridy++;
-		this.add(selectQuizName, gbc);
+        gbc2.weighty = 1;
+        JLabel selectQuizName = new JLabel("Select Quiz:  ");
+		//buttons.add(selectQuizName, gbc2);
+        add(selectQuizName, gbc2);
+        add(buttons, gbc2);
+        
+        GridBagConstraints gbc3 = new GridBagConstraints();
+		
+		
 		String[] listOfQuizzes = QuizSelection.getQuizList();
 		comboBox= new JComboBox<String>(listOfQuizzes);
-		comboBox.setSize(40, 10);
-		gbc.gridy++;
-		this.add(comboBox, gbc);
-		gbc.gridy++;
-		this.add(takeQuizButton, gbc);
-
+		comboBox.setSize(10, 30);
+		add(comboBox, gbc3);
+        add(buttons, gbc3);
+        add(buttons, gbc);
+		
+		JButton takeQuizButton = new JButton();
+        takeQuizButton.setBackground(buttonBackGround);
+        takeQuizButton.setFont(buttonFont);
+        takeQuizButton.setForeground(buttonForeGround);
+        takeQuizButton.setPreferredSize(buttonDimension);
+        takeQuizButton.setText(Constants.TAKE_QUIZ);
+        takeQuizButton.addActionListener(new ChangeStateListener());
+        takeQuizButton.setFocusPainted(false);
+        add(takeQuizButton, gbc1);
+        add(buttons, gbc1);
+        //buttons.add(takeQuizButton, gbc1);
+		this.setVisible(true);
+		
 	}
 
 }

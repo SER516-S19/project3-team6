@@ -110,6 +110,7 @@ public class QuizCreationPanel extends JPanel{
 
     private static JButton getBackButton(){
         JButton backButton = new JButton(Constants.BACK);
+        backButton.setToolTipText("Create New Quiz");
         backButton.setFocusPainted(false);
         backButton.addActionListener(new ChangeStateListener());
         return backButton;

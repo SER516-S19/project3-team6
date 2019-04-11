@@ -53,7 +53,6 @@ public class ReadJsonServiceFactory {
 		try {
 			File quizFileDir = new File("src/../../Quizzes/");
 			_directoryPath = quizFileDir.getCanonicalPath() + '/';
-			System.out.println("direPath: " + _directoryPath);
 		} catch (Throwable t) {
 			t.printStackTrace();
 		} finally {

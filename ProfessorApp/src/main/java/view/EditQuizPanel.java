@@ -103,7 +103,7 @@ public class EditQuizPanel extends JPanel {
 
 	private static void populateQuestions(List<Question> questionsList) {
 		
-		if(null!=questions && !questions.isEmpty()) {
+		if(null!=questionsList && !questionsList.isEmpty()) {
 			
 			for(Question que: questionsList) {
 				QuestionPanel questionPanel = new QuestionPanel(que);
@@ -135,8 +135,21 @@ public class EditQuizPanel extends JPanel {
 	}
 
 	public static EditQuizPanel getEditQuestionPanel(File file) {
-			Quiz quiz = FileReadService.readFileQuiz(file);
-			return new EditQuizPanel(quiz);
+		Quiz quiz = FileReadService.readFileQuiz(file);
+		if (null == editQuizPanel)
+			editQuizPanel = new EditQuizPanel(quiz);
+
+		return editQuizPanel;
+	}
+	
+	public static EditQuizPanel getEditQuestionPanel() {
+
+		if (null != editQuizPanel) {
+			return editQuizPanel;
+		} else {
+			System.out.println("The Edit Quiz Panel is null! ");
+			return null;
+		}
 	}
 
 }

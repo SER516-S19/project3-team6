@@ -26,7 +26,11 @@ import model.Question;
  */
 
 public class QuestionPanel extends JPanel {
-    private JTextField questionText;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -714620596474140993L;
+	private JTextField questionText;
     private JTextField option1Text;
     private JTextField option2Text;
     private JTextField option3Text;

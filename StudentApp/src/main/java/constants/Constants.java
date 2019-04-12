@@ -7,7 +7,6 @@ package constants;
  */
 
 public class Constants {
-	//Global Constants
 	public static final String DASHBOARD_PANEL = "studentDashboard";
 	public static final String QUIZ_PANEL = "quizPanel";
 	public static final String QUESTION_DISPLAY_PANEL = "questionDisplayPanel";

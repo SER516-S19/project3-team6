@@ -2,7 +2,15 @@ package service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Question;
+import model.Quiz;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Class for reading json file in the form of JSONObject
@@ -40,9 +48,32 @@ public class FileReadService {
 			}
 			jsonString = sb.toString();
 		}
-		catch(Exception ex) {
+		catch(IOException ex) {
 			ex.printStackTrace();
 		}
 		return jsonString;
+	}
+
+	public static Quiz readFileQuiz(String file) {
+		Quiz quiz = null;
+		try {
+			JSONObject jsonObject = readFile(file);
+			JSONArray jsonArray = (JSONArray) jsonObject.get("questions");
+			String key = null;
+			List<Question> questions = new ArrayList<>();
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject ob = jsonArray.getJSONObject(i);
+				key = ob.toString();
+
+				ObjectMapper om = new ObjectMapper();
+
+				Question q = om.readValue(key, Question.class);
+				questions.add(q);
+			}
+			quiz = new Quiz(questions);
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+		return quiz;
 	}
 }

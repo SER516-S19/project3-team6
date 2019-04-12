@@ -103,19 +103,23 @@ public class EditQuizPanel extends JPanel {
 		if (null != questionsList && !questionsList.isEmpty()) {
 			for (Question que : questionsList) {
 				QuestionPanel questionPanel = new QuestionPanel(que);
-				Color borderColor = new Color(154, 154, 154);
-				Color foreGroundColor = new Color(47, 79, 79);
-				questionPanel.setBorder(
-						new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
-				questionPanel.setForeground(foreGroundColor);
-				listDisplayPanel.add(questionPanel);
-				// Add in Class DataStructure
-				questions.add(questionPanel);
+				setQuestions(questionPanel);
+
 			}
 		}
 
 		listDisplayPanel.revalidate();
 
+	}
+
+	private static void setQuestions(QuestionPanel questionPanel){
+		Color borderColor = new Color(154, 154, 154);
+		Color foreGroundColor = new Color(47, 79, 79);
+		questionPanel.setBorder(
+				new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
+		questionPanel.setForeground(foreGroundColor);
+		listDisplayPanel.add(questionPanel);
+		questions.add(questionPanel);
 	}
 
 	public static void editQuestionPanel() {
@@ -140,14 +144,7 @@ public class EditQuizPanel extends JPanel {
 
 	private static void addFooterForm() {
 		QuestionPanel questionPanel = new QuestionPanel();
-		Color borderColor = new Color(154, 154, 154);
-		Color foreGroundColor = new Color(47, 79, 79);
-		questionPanel
-				.setBorder(new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
-		questionPanel.setForeground(foreGroundColor);
-		listDisplayPanel.add(questionPanel);
-		// Add in Class DataStructure
-		questions.add(questionPanel);
+		setQuestions(questionPanel);
 		listDisplayPanel.revalidate();
 
 	}

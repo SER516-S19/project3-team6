@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -44,7 +45,6 @@ public class QuestionDisplayPanel extends JPanel {
 
 	public void display(final int counter)
 	{
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBackground(new Color(255, 255, 255));
         this.setBorder(new EmptyBorder(10, 10, 10, 10));
         Dimension buttonDimension = new Dimension(150, 50);
@@ -92,19 +92,19 @@ public class QuestionDisplayPanel extends JPanel {
 		correctAnswer = questions.get(counter).getCorrectAnswer();
 
 		giveupButton.addActionListener(new ChangeStateListener());
-		
+		Dimension panelDimention = new Dimension(600, 300);
 		JPanel jp = new JPanel();
 		jp.setAlignmentX( JPanel.LEFT_ALIGNMENT );		
 		jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
+		jp.setPreferredSize(panelDimention);
 		jp.setBackground(new Color(255, 255, 255));
+		jp.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		jp.add(questionLabel);
 		jp.add(optionA);
 		jp.add(optionB);
 		jp.add(optionC);
 		jp.add(optionD);
-		
-		
 		
 		JPanel jp1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		jp1.setAlignmentX( JPanel.LEFT_ALIGNMENT );

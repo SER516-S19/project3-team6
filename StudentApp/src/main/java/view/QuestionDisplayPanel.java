@@ -52,11 +52,13 @@ public class QuestionDisplayPanel extends JPanel {
         Color buttonForeGround = new Color(0, 128, 128);
         Font buttonFont = new Font("Monospaced", Font.PLAIN, 24);
 		
-		JButton nextButton=new JButton("Next");
+		JButton nextButton=new JButton(Constants.NEXT_BUTTON);
 		nextButton.setBackground(buttonBackGround);
 		nextButton.setFont(buttonFont);
 		nextButton.setForeground(buttonForeGround);
+
 		nextButton.setSize(buttonDimension);
+
 		nextButton.setFocusPainted(false);
 		
 		JButton giveupButton=new JButton(Constants.GIVEUP_BUTTON);
@@ -66,10 +68,11 @@ public class QuestionDisplayPanel extends JPanel {
 		giveupButton.setSize(buttonDimension);
 		giveupButton.setFocusPainted(false);
         
-		JButton submitButton = new JButton("Submit");
+		JButton submitButton = new JButton(Constants.SUBMIT_BUTTON);
 		submitButton.setBackground(buttonBackGround);
 		submitButton.setFont(buttonFont);
 		submitButton.setForeground(buttonForeGround);
+
 		submitButton.setSize(buttonDimension);
 		submitButton.setFocusPainted(false);
 		
@@ -88,6 +91,7 @@ public class QuestionDisplayPanel extends JPanel {
 		optionC = new JRadioButton(options[2]);
 		optionC.setFont(buttonFont);
 		optionD = new JRadioButton(options[3]);
+
 		optionD.setFont(buttonFont);
 		correctAnswer = questions.get(counter).getCorrectAnswer();
 
@@ -113,10 +117,49 @@ public class QuestionDisplayPanel extends JPanel {
 		jp1.add(giveupButton);
 		jp1.add(nextButton);
 
+
 		this.add(jp);
 		this.add(jp1);
 
 		nextButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean isCorrectAnsGiven = false;
+				if (optionA.isSelected()) {
+					if (optionA.getText().equals(correctAnswer)) {
+						isCorrectAnsGiven = true;
+					}
+
+				} else if (optionB.isSelected()) {
+					if (optionB.getText().equals(correctAnswer)) {
+						isCorrectAnsGiven = true;
+					}
+				} else if (optionC.isSelected()) {
+					if (optionC.getText().equals(correctAnswer)) {
+						isCorrectAnsGiven = true;
+					}
+				} else if (optionD.isSelected()) {
+					if (optionD.getText().equals(correctAnswer)) {
+						isCorrectAnsGiven = true;
+					}
+				}
+
+				if (isCorrectAnsGiven) {
+					questions.remove(counter);
+					questionCount = counter;
+				} else {
+					questionCount = counter + 1;
+				}
+				if (questionCount >= questions.size()) {
+					questionCount = 0;
+				} else if (questions.size() == 0){
+					StudentMainFrame.closeWindow();
+				}
+				StudentMainFrame.setQuestionDisplayPanel(questionCount);
+			}
+		});
+		
+		submitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boolean isCorrectAnsGiven = false;

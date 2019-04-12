@@ -20,8 +20,7 @@ public class QuizSelection {
 			listOfQuizzes = new String[quizListNames.size()];
 			for (int i = 0; i < quizListNames.size(); i++) {
 				String quizFileName = quizListNames.get(i);
-				System.out.println("only Name:: " + quizFileName.substring(quizFileName.lastIndexOf('/')+1));;
-				listOfQuizzes[i] = quizFileName;
+				listOfQuizzes[i] = quizFileName.substring(quizFileName.lastIndexOf('/')+1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

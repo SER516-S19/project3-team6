@@ -1,15 +1,22 @@
 package view;
 
+import java.awt.Choice;
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.SoftBevelBorder;
+
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import constant.Constants;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
+import constant.Constants;
+import model.Question;
 
 
 /**
@@ -19,7 +26,11 @@ import javax.swing.border.BevelBorder;
  */
 
 public class QuestionPanel extends JPanel {
-    private JTextField questionText;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -714620596474140993L;
+	private JTextField questionText;
     private JTextField option1Text;
     private JTextField option2Text;
     private JTextField option3Text;
@@ -102,6 +113,82 @@ public class QuestionPanel extends JPanel {
         add(correctAnswerChoice, "4, 14, left, default");
 
     }
+    /**
+     * Prepopulate the panel.
+     */
+    public QuestionPanel(Question question) {
+        setLayout(new FormLayout(columnSpecs,rowSpecs));
+        Color uniformUIColor = new Color(47, 79, 79);
+        Font boldFont = new Font("Monaco", Font.BOLD, 14);
+        Font plainFont = new Font("Monaco", Font.PLAIN, 13);
+
+        JLabel lblQuestion = new JLabel("Question:");
+        lblQuestion.setFont(boldFont);
+        lblQuestion.setForeground(uniformUIColor);
+        add(lblQuestion, "2, 2, right, default");
+
+        questionText = new JTextField(question.getTitle());
+        add(questionText, "4, 2, default, fill");
+        questionText.setColumns(10);
+
+        JLabel lblOptions = new JLabel("Options:");
+        lblOptions.setFont(plainFont);
+        lblOptions.setForeground(uniformUIColor);
+        add(lblOptions, "2, 4");
+
+        JLabel lblOption = new JLabel("Option 1:");
+        lblOption.setFont(plainFont);
+        lblOption.setForeground(uniformUIColor);
+        add(lblOption, "2, 6, right, default");
+
+        option1Text = new JTextField(question.getOptions()[0]);
+        add(option1Text, "4, 6, fill, default");
+        option1Text.setColumns(10);
+
+        JLabel lblOption_1 = new JLabel("Option 2:");
+        lblOption_1.setForeground(uniformUIColor);
+        lblOption_1.setFont(plainFont);
+        add(lblOption_1, "2, 8, right, default");
+
+        option2Text = new JTextField(question.getOptions()[1]);
+        add(option2Text, "4, 8, fill, default");
+        option2Text.setColumns(10);
+
+        JLabel lblOption_2 = new JLabel("Option 3:");
+        lblOption_2.setForeground(uniformUIColor);
+        lblOption_2.setFont(plainFont);
+        add(lblOption_2, "2, 10, right, default");
+
+        option3Text = new JTextField(question.getOptions()[2]);
+        add(option3Text, "4, 10, fill, default");
+        option3Text.setColumns(10);
+
+        JLabel lblOption_3 = new JLabel("Option 4:");
+        lblOption_3.setFont(plainFont);
+        lblOption_3.setForeground(uniformUIColor);
+        add(lblOption_3, "2, 12, right, default");
+
+        option4Text = new JTextField(question.getOptions()[3]);
+        add(option4Text, "4, 12, fill, default");
+        option4Text.setColumns(10);
+
+        initializeOptions();
+
+        JLabel lblCorrectAnswer = new JLabel("Correct Answer");
+        lblCorrectAnswer.setForeground(uniformUIColor);
+        lblCorrectAnswer.setFont(boldFont);
+        add(lblCorrectAnswer, "2, 14");
+
+        correctAnswerChoice = new Choice();
+        for(String choices : Constants.OPTIONS)
+            correctAnswerChoice.add(choices);
+        
+        correctAnswerChoice.select(question.getCorrectAnswer());
+        add(correctAnswerChoice, "4, 14, left, default");
+
+    }
+    
+    
 
     private void initializeOptions() {
         Color borderColor = new Color(192, 192, 192);

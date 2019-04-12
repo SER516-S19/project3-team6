@@ -55,7 +55,6 @@ public class CurrentQuizModel implements ModelInterface{
                 options.add(answer);
             question.put(Constants.ANSWER_OPTIONS,options);
             question.put(Constants.CORRECT_ANSWER,questionCorrectAnswers.get(questionEntry));
-
             questions.add(question);
         }
 

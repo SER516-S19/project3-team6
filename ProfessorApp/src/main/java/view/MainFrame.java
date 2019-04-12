@@ -96,22 +96,26 @@ public class MainFrame extends JFrame {
         setCurrentPanel(containerPanel);
     }
     
-    public static void setEditQuizPanel(){
-    	final JFileChooser fc = new JFileChooser();
+	public static void setEditQuizPanel() {
+		final JFileChooser fc = new JFileChooser();
 		fc.showOpenDialog(containerPanel);
-
 		try {
-		    File file = fc.getSelectedFile();
-		    editQuizPanel = PanelFactory.createPanel(Constants.EDIT_QUIZ_PANEL, file);
-		    containerPanel.add(editQuizPanel,Constants.EDIT_QUIZ_PANEL);
-		}catch(Exception e) {
+			File file = fc.getSelectedFile();
+			if (file != null) {
+				editQuizPanel = PanelFactory.createPanel(Constants.EDIT_QUIZ_PANEL, file);
+				containerPanel.add(editQuizPanel, Constants.EDIT_QUIZ_PANEL);
+				CardLayout cardLayout = (CardLayout) containerPanel.getLayout();
+				cardLayout.show(containerPanel, Constants.EDIT_QUIZ_PANEL);
+				setCurrentPanel(containerPanel);
+			} else {
+				CardLayout cardLayout = (CardLayout) containerPanel.getLayout();
+				cardLayout.show(containerPanel, Constants.MENU_PANEL);
+				setCurrentPanel(containerPanel);
+			}
+		} catch (Exception e) {
 			System.out.println(e.getStackTrace());
 		}
-    	
-        CardLayout cardLayout = (CardLayout) containerPanel.getLayout();
-        cardLayout.show(containerPanel,Constants.EDIT_QUIZ_PANEL);
-        setCurrentPanel(containerPanel);
-    }
+	}
 
     public static JComponent getEditQuizPanel() {
 		return editQuizPanel;

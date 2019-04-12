@@ -182,6 +182,8 @@ public class QuestionPanel extends JPanel {
         correctAnswerChoice = new Choice();
         for(String choices : Constants.OPTIONS)
             correctAnswerChoice.add(choices);
+        
+        correctAnswerChoice.select(question.getCorrectAnswer());
         add(correctAnswerChoice, "4, 14, left, default");
 
     }

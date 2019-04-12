@@ -19,7 +19,8 @@ public class Constants {
     public static final String EDIT_QUIZ = "Edit Quiz";
     public static final String APP_TITLE = "Professor-App";
     public static final String SUBMIT = "Submit";
-    public static final String ADD_QUESTION = "Add Question";
+    public static final String ADD_QUESTION_EDITQUIZ = "Add New Question";
+    public static final String ADD_QUESTION_CREATEQUIZ = "Add Question";
     public static final String BACK = "Back";
     public static final String OPTION_1 = "Option 1";
     public static final String OPTION_2 = "Option 2";

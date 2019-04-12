@@ -35,8 +35,10 @@ public class ChangeStateListener implements ActionListener {
 			JButton buttonPressed = (JButton) e.getSource();
 			if (buttonPressed.getText().equalsIgnoreCase(Constants.CREATE_QUIZ)) {
 				setQuizPanel();
-			} else if (buttonPressed.getText().equalsIgnoreCase(Constants.ADD_QUESTION)) {
-				addQuestionPanel();
+			} else if (buttonPressed.getText().equalsIgnoreCase(Constants.ADD_QUESTION_CREATEQUIZ)) {
+				QuizCreationPanel.addQuestionPanel();
+			} else if (buttonPressed.getText().equalsIgnoreCase(Constants.ADD_QUESTION_EDITQUIZ)) {
+				EditQuizPanel.addQuestionPanel();
 			} else if (buttonPressed.getText().equalsIgnoreCase(Constants.EDIT_QUIZ)) {
 				setEditQuizPanel();
 			} else if (buttonPressed.getText().equalsIgnoreCase(Constants.BACK)) {

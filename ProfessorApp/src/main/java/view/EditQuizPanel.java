@@ -28,7 +28,7 @@ import service.FileReadService;
 public class EditQuizPanel extends JPanel {
 
 	/**
-	 * 
+	 * @author Sabyasachi Mohanty
 	 */
 	private static final long serialVersionUID = 4729156041871805029L;
 	private static List<QuestionPanel> questions;
@@ -78,10 +78,8 @@ public class EditQuizPanel extends JPanel {
 		editQuizPanel = this;
 	}
 
-
-
 	private static JButton getBtnAddQuestion() {
-		JButton addQuestionButton = new JButton(Constants.ADD_QUESTION);
+		JButton addQuestionButton = new JButton(Constants.ADD_QUESTION_EDITQUIZ);
 		addQuestionButton.setFocusPainted(false);
 		addQuestionButton.addActionListener(new ChangeStateListener());
 		return addQuestionButton;
@@ -102,22 +100,20 @@ public class EditQuizPanel extends JPanel {
 	}
 
 	private static void populateQuestions(List<Question> questionsList) {
-		
-		if(null!=questionsList && !questionsList.isEmpty()) {
-			
-			for(Question que: questionsList) {
+		if (null != questionsList && !questionsList.isEmpty()) {
+			for (Question que : questionsList) {
 				QuestionPanel questionPanel = new QuestionPanel(que);
 				Color borderColor = new Color(154, 154, 154);
 				Color foreGroundColor = new Color(47, 79, 79);
-				questionPanel
-						.setBorder(new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
+				questionPanel.setBorder(
+						new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
 				questionPanel.setForeground(foreGroundColor);
 				listDisplayPanel.add(questionPanel);
 				// Add in Class DataStructure
 				questions.add(questionPanel);
-			}	
+			}
 		}
-	
+
 		listDisplayPanel.revalidate();
 
 	}
@@ -141,7 +137,26 @@ public class EditQuizPanel extends JPanel {
 
 		return editQuizPanel;
 	}
-	
+
+	private static void addFooterForm() {
+		QuestionPanel questionPanel = new QuestionPanel();
+		Color borderColor = new Color(154, 154, 154);
+		Color foreGroundColor = new Color(47, 79, 79);
+		questionPanel
+				.setBorder(new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
+		questionPanel.setForeground(foreGroundColor);
+		listDisplayPanel.add(questionPanel);
+		// Add in Class DataStructure
+		questions.add(questionPanel);
+		listDisplayPanel.revalidate();
+
+	}
+
+	public static void addQuestionPanel() {
+		addFooterForm();
+		editQuizPanel.validate();
+	}
+
 	public static EditQuizPanel getEditQuestionPanel() {
 
 		if (null != editQuizPanel) {

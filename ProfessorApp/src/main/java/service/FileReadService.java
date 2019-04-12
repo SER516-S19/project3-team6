@@ -73,7 +73,8 @@ public class FileReadService {
 				questions.add(q);
 			}
 			quiz = new Quiz(questions);
-			quiz.setQuizName(file.getName());
+			String fileName = file.getName();
+			quiz.setQuizName(fileName.substring(0, fileName.indexOf(".")));
 		}catch (IOException e){
 			e.printStackTrace();
 		}

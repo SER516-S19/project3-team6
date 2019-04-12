@@ -15,7 +15,12 @@ import java.awt.*;
  */
 public class MenuPanel extends JPanel {
 
-    public MenuPanel(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3478859524085262735L;
+
+	public MenuPanel(){
         setBackground(new Color(255, 255, 255));
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new GridBagLayout());
@@ -56,6 +61,17 @@ public class MenuPanel extends JPanel {
         createQuizButton.addActionListener(new ChangeStateListener());
         createQuizButton.setFocusPainted(false);
         buttons.add(createQuizButton, gbc1);
+        
+        //Edit Quiz
+        JButton editQuizButton = new JButton();
+        editQuizButton.setBackground(buttonBackGround);
+        editQuizButton.setFont(buttonFont);
+        editQuizButton.setForeground(buttonForeGround);
+        editQuizButton.setPreferredSize(buttonDimension);
+        editQuizButton.setText(Constants.EDIT_QUIZ);
+        editQuizButton.addActionListener(new ChangeStateListener());
+        editQuizButton.setFocusPainted(false);
+        buttons.add(editQuizButton, gbc1);
         
         GridBagConstraints gbc2 = new GridBagConstraints();
 

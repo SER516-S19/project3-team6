@@ -22,7 +22,11 @@ import javax.swing.border.BevelBorder;
  *
  */
 public class QuizCreationPanel extends JPanel{
-    private static List<QuestionPanel> questions;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6414793394333032650L;
+	private static List<QuestionPanel> questions;
     private static JTextField quizNameText;
     private static JButton btnAddQuestion,btnSubmit,btnBack;
     private static QuizCreationPanel quizCreationPanel = null;
@@ -95,7 +99,7 @@ public class QuizCreationPanel extends JPanel{
     }
 
     private static JButton getBtnAddQuestion(){
-        JButton addQuestionButton = new JButton(Constants.ADD_QUESTION);
+        JButton addQuestionButton = new JButton(Constants.ADD_QUESTION_CREATEQUIZ);
         addQuestionButton.setFocusPainted(false);
         addQuestionButton.addActionListener(new ChangeStateListener());
         return addQuestionButton;

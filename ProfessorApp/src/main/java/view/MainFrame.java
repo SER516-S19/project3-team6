@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileSystemView;
 
 import constant.Constants;
 
@@ -97,7 +98,9 @@ public class MainFrame extends JFrame {
     }
     
 	public static void setEditQuizPanel() {
-		final JFileChooser fc = new JFileChooser();
+		
+		final JFileChooser fc = new JFileChooser(Constants.QUIZ_DIR, FileSystemView.getFileSystemView());
+		fc.setDialogTitle("Please select the Quiz file to be edited: ");
 		fc.showOpenDialog(containerPanel);
 		try {
 			File file = fc.getSelectedFile();
@@ -116,15 +119,13 @@ public class MainFrame extends JFrame {
 			System.out.println(e.getStackTrace());
 		}
 	}
+	
+	public static void removeEditQuizLayout() {
+		containerPanel.remove(editQuizPanel);
+	}
 
     public static JComponent getEditQuizPanel() {
 		return editQuizPanel;
-	}
-
-	public static void setEditQuizPanel(JComponent editQuizPanel) {
-		 CardLayout cardLayout = (CardLayout) containerPanel.getLayout();
-	        cardLayout.show(containerPanel,Constants.EDIT_QUIZ_PANEL);
-	        setCurrentPanel(containerPanel);
 	}
 
 	/**+

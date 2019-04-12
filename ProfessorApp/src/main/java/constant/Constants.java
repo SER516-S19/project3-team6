@@ -1,9 +1,10 @@
 package constant;
 
+import java.io.File;
+
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
-
 
 /**
  * The Main Constant class
@@ -20,6 +21,7 @@ public class Constants {
     public static final String APP_TITLE = "Professor-App";
     public static final String SUBMIT = "Submit";
     public static final String ADD_QUESTION_EDITQUIZ = "Add New Question";
+    public static final String QUIZ_DIR = getDirectory();
     public static final String ADD_QUESTION_CREATEQUIZ = "Add Question";
     public static final String BACK = "Back";
     public static final String OPTION_1 = "Option 1";
@@ -32,6 +34,31 @@ public class Constants {
     public static final String WARNING_TITLE = "Confirm Action";
     public static final String EMPTY_ERROR = "Quiz Name cannot be Empty!!!";
 
+	public static String getDirectory() {
+		String quizFileDir = System.getProperty("user.dir");
+		//quizFileDir = quizFileDir.substring(0, quizFileDir.lastIndexOf("/"));
+		quizFileDir = quizFileDir + "/Quizzes/";
+		File quizFile = new File(quizFileDir);
+		Boolean result = false;
+		if (!quizFile.exists()) {
+			System.out.println("creating directory: Quizzes");
+
+			try {
+				quizFile.mkdir();
+				result = true;
+			} catch (SecurityException se) {
+				// handle Security exception
+				se.printStackTrace();
+			}
+			if (result) {
+				System.out.println("DIR created");
+			}
+		}
+		System.out.println("Setting the current Quizzes directory to :"+quizFile.getAbsolutePath());
+		return quizFileDir;
+
+	}
+    
     //Form layout Constants
     public static final ColumnSpec[] columnSpecs = new ColumnSpec[] {
             FormSpecs.RELATED_GAP_COLSPEC,
@@ -65,4 +92,5 @@ public class Constants {
     public static final String QUESTION_HEADER = "questions";
     public static final String ANSWER_OPTIONS = "options";
     public static final String CORRECT_ANSWER = "correctAnswer";
+
 }

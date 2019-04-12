@@ -15,7 +15,12 @@ import java.awt.*;
  */
 public class MenuPanel extends JPanel {
 
-    public MenuPanel(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3478859524085262735L;
+
+	public MenuPanel(){
         setBackground(new Color(255, 255, 255));
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new GridBagLayout());
@@ -58,8 +63,6 @@ public class MenuPanel extends JPanel {
         buttons.add(createQuizButton, gbc1);
         
         //Edit Quiz
-//        JPanel editButtons = new JPanel(new GridBagLayout());
-//        buttons.setBackground(Color.black);
         JButton editQuizButton = new JButton();
         editQuizButton.setBackground(buttonBackGround);
         editQuizButton.setFont(buttonFont);

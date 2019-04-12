@@ -17,6 +17,7 @@ import org.json.simple.JSONObject;
 import constant.Constants;
 import controller.QuestionsController;
 import view.EditQuizPanel;
+import view.MainFrame;
 import view.QuizCreationPanel;
 
 /**
@@ -50,15 +51,20 @@ public class ChangeStateListener implements ActionListener {
 
 				// Check if Required fields are Empty
 				if ((editQuizPanel == null && quizCreationPanel.getQuizName().isEmpty())
-						|| (editQuizPanel != null && editQuizPanel.getQuizName().isEmpty()))
+						|| (editQuizPanel != null && editQuizPanel.getQuizName().isEmpty())){
 					showError(Constants.EMPTY_ERROR);
-
-				else {
+				}
+				else if(editQuizPanel==null){
 					questionsController.setQuizName(quizCreationPanel.getQuizName());
 					questionsController.setQuestionPanelList(quizCreationPanel.getQuestions());
 					questionsController.updateModel();
 				}
-
+				else if(editQuizPanel!=null) {
+					questionsController.setQuizName(editQuizPanel.getQuizName());
+					questionsController.setQuestionPanelList(editQuizPanel.getQuestions());
+					questionsController.updateModel();
+					MainFrame.removeEditQuizLayout();
+				}
 			}
 
 		} else if (actionSource instanceof JSONObject) {

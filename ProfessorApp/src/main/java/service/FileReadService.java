@@ -1,16 +1,19 @@
 package service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Question;
-import model.Quiz;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import model.Question;
+import model.Quiz;
 
 /**
  * Class for reading json file in the form of JSONObject
@@ -26,7 +29,7 @@ public class FileReadService {
 	public FileReadService() {
 	}
 
-	public static JSONObject readFile(String file) {
+	public static JSONObject readFile(File file) {
 		String jsonString =  readJsonFile(file);
 		JSONObject jsonObject = new JSONObject(jsonString.substring(jsonString.indexOf('{')));
 		return jsonObject;
@@ -35,11 +38,12 @@ public class FileReadService {
 	/*
 	* Get the file content in the form of String
 	* */
-	private static String readJsonFile(String filename) {
+	private static String readJsonFile(File file) {
 		String jsonString = "";
 		try {
+			FileReader fileReader = new FileReader(file);
 			@SuppressWarnings("resource")
-			BufferedReader br = new BufferedReader(new FileReader(filename));
+			BufferedReader br = new BufferedReader(fileReader);
 			StringBuilder sb = new StringBuilder();
 			String readLine = br.readLine();
 			while(readLine != null) {
@@ -54,7 +58,7 @@ public class FileReadService {
 		return jsonString;
 	}
 
-	public static Quiz readFileQuiz(String file) {
+	public static Quiz readFileQuiz(File file) {
 		Quiz quiz = null;
 		try {
 			JSONObject jsonObject = readFile(file);
@@ -64,13 +68,12 @@ public class FileReadService {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject ob = jsonArray.getJSONObject(i);
 				key = ob.toString();
-
 				ObjectMapper om = new ObjectMapper();
-
 				Question q = om.readValue(key, Question.class);
 				questions.add(q);
 			}
 			quiz = new Quiz(questions);
+			quiz.setQuizName(file.getName());
 		}catch (IOException e){
 			e.printStackTrace();
 		}

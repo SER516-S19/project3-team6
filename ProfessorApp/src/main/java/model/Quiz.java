@@ -12,7 +12,7 @@ import java.util.List;
  **/
 
 public class Quiz {
-	
+	private String quizName;
 	private List<Question> questions;
 
 	public Quiz(){}
@@ -27,5 +27,11 @@ public class Quiz {
 	
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+	public String getQuizName() {
+		return quizName;
+	}
+	public void setQuizName(String quizName) {
+		this.quizName = quizName;
 	}
 }

@@ -5,11 +5,9 @@ import java.awt.Font;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,6 +21,9 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import constant.Constants;
 import listener.ChangeStateListener;
+import model.Question;
+import model.Quiz;
+import service.FileReadService;
 
 public class EditQuizPanel extends JPanel {
 
@@ -39,7 +40,7 @@ public class EditQuizPanel extends JPanel {
 	private static ColumnSpec[] columnSpecs = Constants.columnSpecs;
 	private static RowSpec[] rowSpecs = Constants.rowSpecs;
 
-	public EditQuizPanel() {
+	public EditQuizPanel(Quiz quiz) {
 		setForeground(Color.black);
 		questions = new ArrayList<>();
 		setLayout(new FormLayout(columnSpecs, rowSpecs));
@@ -52,7 +53,7 @@ public class EditQuizPanel extends JPanel {
 		add(quizName, "2, 2");
 
 		Color textColor = new Color(192, 192, 192);
-		quizNameText = new JTextField();
+		quizNameText = new JTextField(quiz.getQuizName());
 		quizNameText.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, textColor, textColor, textColor, textColor));
 		add(quizNameText, "4, 2");
 		quizNameText.setColumns(10);
@@ -68,8 +69,8 @@ public class EditQuizPanel extends JPanel {
 
 		listDisplayPanel = new JPanel();
 		listDisplayPanel.setLayout(new BoxLayout(listDisplayPanel, BoxLayout.Y_AXIS));
-		//populateQuestions();
-		//addFooterForm();
+
+		populateQuestions(quiz.getQuestions());
 		containerPane = new JScrollPane(listDisplayPanel);
 		containerPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
@@ -77,9 +78,7 @@ public class EditQuizPanel extends JPanel {
 		editQuizPanel = this;
 	}
 
-	private static void populateQuestions() {
-		
-	}
+
 
 	private static JButton getBtnAddQuestion() {
 		JButton addQuestionButton = new JButton(Constants.ADD_QUESTION);
@@ -102,24 +101,29 @@ public class EditQuizPanel extends JPanel {
 		return backButton;
 	}
 
-	private static void addFooterForm() {
-		QuestionPanel questionPanel = new QuestionPanel();
-		Color borderColor = new Color(154, 154, 154);
-		Color foreGroundColor = new Color(47, 79, 79);
-		questionPanel
-				.setBorder(new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
-		questionPanel.setForeground(foreGroundColor);
-		listDisplayPanel.add(questionPanel);
-		// Add in Class DataStructure
-		questions.add(questionPanel);
+	private static void populateQuestions(List<Question> questionsList) {
+		
+		if(null!=questions && !questions.isEmpty()) {
+			
+			for(Question que: questionsList) {
+				QuestionPanel questionPanel = new QuestionPanel(que);
+				Color borderColor = new Color(154, 154, 154);
+				Color foreGroundColor = new Color(47, 79, 79);
+				questionPanel
+						.setBorder(new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
+				questionPanel.setForeground(foreGroundColor);
+				listDisplayPanel.add(questionPanel);
+				// Add in Class DataStructure
+				questions.add(questionPanel);
+			}	
+		}
+	
 		listDisplayPanel.revalidate();
 
 	}
 
 	public static void editQuestionPanel() {
-		addFooterForm();
 		editQuizPanel.validate();
-
 	}
 
 	public List<QuestionPanel> getQuestions() {
@@ -131,8 +135,8 @@ public class EditQuizPanel extends JPanel {
 	}
 
 	public static EditQuizPanel getEditQuestionPanel(File file) {
-		
-			return new EditQuizPanel();
+			Quiz quiz = FileReadService.readFileQuiz(file);
+			return new EditQuizPanel(quiz);
 	}
 
 }

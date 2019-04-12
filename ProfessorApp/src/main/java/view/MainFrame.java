@@ -105,7 +105,7 @@ public class MainFrame extends JFrame {
 		    editQuizPanel = PanelFactory.createPanel(Constants.EDIT_QUIZ_PANEL, file);
 		    containerPanel.add(editQuizPanel,Constants.EDIT_QUIZ_PANEL);
 		}catch(Exception e) {
-			
+			System.out.println(e.getStackTrace());
 		}
     	
         CardLayout cardLayout = (CardLayout) containerPanel.getLayout();

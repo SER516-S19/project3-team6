@@ -18,7 +18,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 import constants.Constants;
-import controller.ChangeStateListener;
 import controller.QuestionsDisplay;
 import model.Question;
 import model.Quiz;
@@ -73,7 +72,6 @@ public class QuestionDisplayPanel extends JPanel {
 		ansbuttonGroup.add(optionD);
 		correctAnswer = questions.get(counter).getCorrectAnswer();
 		
-		giveupButton.addActionListener(new ChangeStateListener());
 		Dimension panelDimention = new Dimension(600, 300);
 		JPanel questionPanel = new JPanel();
 		questionPanel.setAlignmentX( JPanel.LEFT_ALIGNMENT);		
@@ -100,6 +98,13 @@ public class QuestionDisplayPanel extends JPanel {
 
 		this.add(questionPanel);
 		this.add(buttonPanel);
+
+		giveupButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				StudentMainFrame.closeWindow();
+			}
+		});
 
 		nextButton.addActionListener(new ActionListener() {
 			@Override

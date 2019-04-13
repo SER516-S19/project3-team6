@@ -1,16 +1,19 @@
 package view;
 
-import constants.Constants;
-import controller.ChangeStateListener;
-import controller.QuizSelection;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+import constants.Constants;
+import controller.QuizSelection;
 
 /**
  * To launch student Dash board
  *
- * @author Manisha Miriyala, Bijaylaxmi Panda
+ * @author Manisha Miriyala, Bijayalaxmi Panda
  * @version 1.0
  */
 
@@ -36,7 +39,12 @@ public class QuizSelectionPanel extends JPanel {
 		
 		JButton takeQuizButton = new JButton(Constants.TAKE_QUIZ);
 		QuestionDisplayPanel.styleButton(takeQuizButton);
-		takeQuizButton.addActionListener(new ChangeStateListener());
+		takeQuizButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				StudentMainFrame.setQuestionDisplayPanel(Constants.START_APP);
+            }
+		});
 		
 		JLabel pageName = new JLabel("Welcome Student!", SwingConstants.LEADING);
 		pageName.setFont(new Font(pageName.getName(), Font.BOLD, 40));

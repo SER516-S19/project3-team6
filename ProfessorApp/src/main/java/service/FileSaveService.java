@@ -1,11 +1,13 @@
 package service;
-import listener.ChangeStateListener;
-import org.json.simple.JSONObject;
-
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import org.json.simple.JSONObject;
+
+import constant.Constants;
+import listener.ChangeStateListener;
 
 
 /**
@@ -19,32 +21,15 @@ public class FileSaveService {
     private String dirPath;
     public FileSaveService(JSONObject obj, String fileName) {
         // Get Filepath for Quizzes Directory
-        File quizFileDir = new File("src/../../Quizzes");
+        File quizFileDir = new File(Constants.QUIZ_DIR);
         dirPath = quizFileDir.getAbsolutePath();
-        if (!quizFileDir.exists()) {
-            System.out.println("creating directory: " + quizFileDir.getName());
-            boolean result = false;
-
-            try{
-                quizFileDir.mkdir();
-                result = true;
-            }
-            catch(SecurityException se){
-                //handle Security exception
-                se.printStackTrace();
-            }
-            if(result) {
-                System.out.println("DIR created");
-                    writeFile(obj,fileName,dirPath);
-            }
-        }else
-            writeFile(obj,fileName,dirPath);
+        writeFile(obj,fileName,dirPath);
 
     }
 
     private void writeFile(JSONObject obj, String fileName,String dirPath) {
-        try (FileWriter file = new FileWriter("src/../../Quizzes/"+fileName+".json")) {
-            filePath = "src/../../Quizzes/"+fileName+".json";
+        try (FileWriter file = new FileWriter(Constants.QUIZ_DIR+fileName+".json")) {
+            filePath = Constants.QUIZ_DIR+fileName+".json";
             file.write(obj.toJSONString());
             System.out.println("Successfully Copied JSON Object to File...");
             System.out.println("\nJSON Object: " + obj);

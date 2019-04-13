@@ -1,11 +1,18 @@
 package view;
 
-import constant.Constants;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileSystemView;
+
+import constant.Constants;
 
 
 /**
@@ -24,6 +31,7 @@ public class MainFrame extends JFrame {
     private static JFrame mainFrame = null;
     private static JComponent menuPanel;
     private static JComponent quizPanel;
+    private static JComponent editQuizPanel;
     private static JComponent currentPanel = null;
     private static JPanel containerPanel;
     private static int frameHeight = 1000;
@@ -39,12 +47,13 @@ public class MainFrame extends JFrame {
 
         menuPanel = PanelFactory.createPanel(Constants.MENU_PANEL);
         quizPanel = PanelFactory.createPanel(Constants.QUIZ_PANEL);
+        
 
         //Contains all panels for dynamic switching
         containerPanel = new JPanel(new CardLayout());
         containerPanel.add(menuPanel,Constants.MENU_PANEL);
         containerPanel.add(quizPanel,Constants.QUIZ_PANEL);
-
+        
         //Keeps track of the currentPanel being displayed
         currentPanel = menuPanel;
 
@@ -87,8 +96,39 @@ public class MainFrame extends JFrame {
         cardLayout.show(containerPanel,Constants.QUIZ_PANEL);
         setCurrentPanel(containerPanel);
     }
+    
+	public static void setEditQuizPanel() {
+		
+		final JFileChooser fc = new JFileChooser(Constants.QUIZ_DIR, FileSystemView.getFileSystemView());
+		fc.setDialogTitle("Please select the Quiz file to be edited: ");
+		fc.showOpenDialog(containerPanel);
+		try {
+			File file = fc.getSelectedFile();
+			if (file != null) {
+				editQuizPanel = PanelFactory.createPanel(Constants.EDIT_QUIZ_PANEL, file);
+				containerPanel.add(editQuizPanel, Constants.EDIT_QUIZ_PANEL);
+				CardLayout cardLayout = (CardLayout) containerPanel.getLayout();
+				cardLayout.show(containerPanel, Constants.EDIT_QUIZ_PANEL);
+				setCurrentPanel(containerPanel);
+			} else {
+				CardLayout cardLayout = (CardLayout) containerPanel.getLayout();
+				cardLayout.show(containerPanel, Constants.MENU_PANEL);
+				setCurrentPanel(containerPanel);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getStackTrace());
+		}
+	}
+	
+	public static void removeEditQuizLayout() {
+		containerPanel.remove(editQuizPanel);
+	}
 
-    /**+
+    public static JComponent getEditQuizPanel() {
+		return editQuizPanel;
+	}
+
+	/**+
      * Shows Dialog Box on quiz storage completion and exit safely
      * @param message
      */

@@ -93,6 +93,11 @@ public class QuestionDisplayPanel extends JPanel {
 		optionD = new JRadioButton(options[3]);
 
 		optionD.setFont(buttonFont);
+		ButtonGroup ansbuttonGroup = new ButtonGroup();
+		ansbuttonGroup.add(optionA);
+		ansbuttonGroup.add(optionB);
+		ansbuttonGroup.add(optionC);
+		ansbuttonGroup.add(optionD);
 		correctAnswer = questions.get(counter).getCorrectAnswer();
 
 		giveupButton.addActionListener(new ChangeStateListener());

@@ -10,7 +10,7 @@ import java.awt.*;
 
 /**
  * Initializing the Main Menu Panel for the app.
- * @author Abhinab Mohanty GIT ID: 53
+ * @author Abhinab Mohanty GIT ID: 53, Carnic GIT ID:57
  *
  */
 public class MenuPanel extends JPanel {

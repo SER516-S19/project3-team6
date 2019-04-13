@@ -18,7 +18,7 @@ import javax.swing.border.BevelBorder;
 
 /**
  * Initializing the Quiz Creation Panel.
- * @author Abhinab Mohanty GIT ID: 53
+ * @author Abhinab Mohanty GIT ID: 53, Carnic GIT ID:57
  *
  */
 public class QuizCreationPanel extends JPanel{

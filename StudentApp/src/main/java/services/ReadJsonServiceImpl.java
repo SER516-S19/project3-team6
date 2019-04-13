@@ -1,7 +1,6 @@
 package services;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,20 +24,22 @@ import model.Quiz;
 
 public class ReadJsonServiceImpl {
 
-	// method reads the json files in the directory given and return the
-	// list of quiz objects
+	// returns the list of JSON files in the directory /Quizzes
 	public List<String> getJsonFileNames() throws IOException, JSONException {
 		List<String> allJsonFiles = ReadJsonServiceFactory.getAllJsonFiles();
 		return allJsonFiles;
 	}
-
+	
+	/* reads the JSON file as a string and converts it into Model objects and 
+	 * returns the list of Quiz objects 
+	 * */
 	public static List<Quiz> getJsonData(String jsonFileName) throws IOException, JSONException {
 		String jsonFilePath = ReadJsonServiceFactory.getDirPath() + jsonFileName;
 		List<Quiz> quizList = new ArrayList<Quiz>();
 		String jsonString =  readJsonFile(jsonFilePath);
+		//uses external library to convert string to JSON object
 		JSONObject jsonObject = new JSONObject(jsonString.substring(jsonString.indexOf('{')));
 		JSONArray jsonArray = (JSONArray) jsonObject.get("questions");
-
 		String key = null;
 		List<Question> questions = new ArrayList<>();
 		for(int i=0; i< jsonArray.length(); i++) {
@@ -53,7 +54,7 @@ public class ReadJsonServiceImpl {
 		return quizList;
 	}
 
-	// method to read a json file and return the content in a String
+	// method to read a file and return it's content in a String
 	private static String readJsonFile(String filename) {  
 		String jsonString = "";
 		try {

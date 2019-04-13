@@ -113,8 +113,11 @@ public class QuestionPanel extends JPanel {
         add(correctAnswerChoice, "4, 14, left, default");
 
     }
+    
+    
     /**
-     * Prepopulate the panel.
+     * Prepopulate the panel with questions along with options, correct answers
+     * @param Question
      */
     public QuestionPanel(Question question) {
         setLayout(new FormLayout(columnSpecs,rowSpecs));

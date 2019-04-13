@@ -22,9 +22,7 @@ import javax.swing.border.BevelBorder;
  *
  */
 public class QuizCreationPanel extends JPanel{
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -6414793394333032650L;
 	private static List<QuestionPanel> questions;
     private static JTextField quizNameText;

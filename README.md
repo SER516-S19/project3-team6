@@ -8,7 +8,7 @@ Desktop Application for Student and Professor
 - Abhinab Mohanty
 
 **Scrum Master:** 
-- Prashansa
+- Bijayalaxmi Panda
 
 **Development Team:** 
 - Gangadhara Matti

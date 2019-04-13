@@ -97,8 +97,12 @@ public class MainFrame extends JFrame {
         setCurrentPanel(containerPanel);
     }
     
+    /**
+     * Sets the Edit Quiz panel and also populates the JPanel with Quiz details
+     */
 	public static void setEditQuizPanel() {
 		
+		//This code implements the Browse Quiz functionality of the EDIT Quiz Feature.
 		final JFileChooser fc = new JFileChooser(Constants.QUIZ_DIR, FileSystemView.getFileSystemView());
 		fc.setDialogTitle("Please select the Quiz file to be edited: ");
 		fc.showOpenDialog(containerPanel);

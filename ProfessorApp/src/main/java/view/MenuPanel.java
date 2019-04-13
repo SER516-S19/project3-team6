@@ -15,9 +15,6 @@ import java.awt.*;
  */
 public class MenuPanel extends JPanel {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = -3478859524085262735L;
 
 	public MenuPanel(){

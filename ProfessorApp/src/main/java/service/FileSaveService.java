@@ -31,8 +31,6 @@ public class FileSaveService {
         try (FileWriter file = new FileWriter(Constants.QUIZ_DIR+fileName+".json")) {
             filePath = Constants.QUIZ_DIR+fileName+".json";
             file.write(obj.toJSONString());
-            System.out.println("Successfully Copied JSON Object to File...");
-            System.out.println("\nJSON Object: " + obj);
 
         } catch (IOException  e) {
             e.printStackTrace();

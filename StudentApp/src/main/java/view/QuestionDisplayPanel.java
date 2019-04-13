@@ -47,31 +47,23 @@ public class QuestionDisplayPanel extends JPanel {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBackground(new Color(255, 255, 255));
         this.setBorder(new EmptyBorder(10, 10, 10, 10));
-        Dimension buttonDimension = new Dimension(150, 50);
-        Color buttonBackGround = new Color(245, 255, 250);
-        Color buttonForeGround = new Color(0, 128, 128);
-        Font buttonFont = new Font("Monospaced", Font.PLAIN, 24);
+        Dimension buttonDimension = new Dimension(130, 20);
+        Font buttonFont = new Font("Monospaced", Font.PLAIN, 20);
 		
 		JButton nextButton=new JButton(Constants.NEXT_BUTTON);
-		nextButton.setBackground(buttonBackGround);
 		nextButton.setFont(buttonFont);
-		nextButton.setForeground(buttonForeGround);
 
 		nextButton.setSize(buttonDimension);
 
 		nextButton.setFocusPainted(false);
 		
 		JButton giveupButton=new JButton(Constants.GIVEUP_BUTTON);
-		giveupButton.setBackground(buttonBackGround);
 		giveupButton.setFont(buttonFont);
-		giveupButton.setForeground(buttonForeGround);
 		giveupButton.setSize(buttonDimension);
 		giveupButton.setFocusPainted(false);
         
 		JButton submitButton = new JButton(Constants.SUBMIT_BUTTON);
-		submitButton.setBackground(buttonBackGround);
 		submitButton.setFont(buttonFont);
-		submitButton.setForeground(buttonForeGround);
 
 		submitButton.setSize(buttonDimension);
 		submitButton.setFocusPainted(false);
@@ -103,7 +95,7 @@ public class QuestionDisplayPanel extends JPanel {
 		giveupButton.addActionListener(new ChangeStateListener());
 		
 		JPanel jp = new JPanel();
-		jp.setAlignmentX( JPanel.LEFT_ALIGNMENT );		
+		jp.setAlignmentX( JPanel.LEFT_ALIGNMENT);		
 		jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
 		jp.setBackground(new Color(255, 255, 255));
 
@@ -113,15 +105,12 @@ public class QuestionDisplayPanel extends JPanel {
 		jp.add(optionC);
 		jp.add(optionD);
 		
-		
-		
 		JPanel jp1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		jp1.setAlignmentX( JPanel.LEFT_ALIGNMENT );
 		jp1.setBackground(new Color(255, 255, 255));
 		jp1.add(submitButton);
 		jp1.add(giveupButton);
 		jp1.add(nextButton);
-
 
 		this.add(jp);
 		this.add(jp1);
@@ -201,7 +190,6 @@ public class QuestionDisplayPanel extends JPanel {
 				StudentMainFrame.setQuestionDisplayPanel(questionCount);
 			}
 		});
-
 	}
 
 	static void setQuestion(String filePath) {

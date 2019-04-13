@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Class for Quiz which contains a list of questions
  * 
- * @author gmatti1
+ * @author Gangadhara Matti
  * 
  **/
 

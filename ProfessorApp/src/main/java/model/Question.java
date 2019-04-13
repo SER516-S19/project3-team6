@@ -3,7 +3,7 @@ package model;
 /**
  * Class for Question which is used to model json read
  * 
- * @author gmatti1
+ * @author Gangadhara Matti
  * 
  * */
 

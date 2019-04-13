@@ -25,11 +25,13 @@ import model.Question;
 import model.Quiz;
 import service.FileReadService;
 
+/**
+ * @author Sabyasachi Mohanty
+ * @since 11th Apr, 2019
+ * @desc This is the Panel for the EDIT QUIZ Functionality.
+ */
 public class EditQuizPanel extends JPanel {
 
-	/**
-	 * @author Sabyasachi Mohanty
-	 */
 	private static final long serialVersionUID = 4729156041871805029L;
 	private static List<QuestionPanel> questions;
 	private static JTextField quizNameText;
@@ -112,11 +114,11 @@ public class EditQuizPanel extends JPanel {
 
 	}
 
-	private static void setQuestions(QuestionPanel questionPanel){
+	private static void setQuestions(QuestionPanel questionPanel) {
 		Color borderColor = new Color(154, 154, 154);
 		Color foreGroundColor = new Color(47, 79, 79);
-		questionPanel.setBorder(
-				new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
+		questionPanel
+				.setBorder(new SoftBevelBorder(BevelBorder.RAISED, borderColor, borderColor, borderColor, borderColor));
 		questionPanel.setForeground(foreGroundColor);
 		listDisplayPanel.add(questionPanel);
 		questions.add(questionPanel);

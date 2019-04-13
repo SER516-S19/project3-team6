@@ -1,11 +1,9 @@
 package model;
 
 /**
- * Class for Question object
+ * Class for Question which is used to model json read
  * 
- * @author gmatti1
- * date - April 11, 2019
- * version = 0.1 
+ * @author Gangadhara Matti
  * 
  * */
 
@@ -13,8 +11,7 @@ public class Question {
 	private String title;
 	private String correctAnswer;
 	private String[] options = new String[4];
-	
-	// getters and setters
+
 	public String getTitle() {
 		return title;
 	}

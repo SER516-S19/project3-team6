@@ -5,7 +5,6 @@ import static view.MainFrame.setEditQuizPanel;
 import static view.MainFrame.setQuizPanel;
 import static view.MainFrame.showError;
 import static view.MainFrame.showMessage;
-import static view.QuizCreationPanel.addQuestionPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

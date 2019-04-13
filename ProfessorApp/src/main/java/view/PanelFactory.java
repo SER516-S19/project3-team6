@@ -33,6 +33,14 @@ public class PanelFactory {
 
 	}
 	
+	/**
+	 * Factory method which takes name of the panel as argument and returns the
+	 * panel after creating it
+	 * 
+	 * @param componentName
+	 * @param File quizfile selected by the user
+	 * @return the panel after creating it
+	 */
 	public static JComponent createPanel(final String componentName, File file) {
 		if (componentName.equalsIgnoreCase(Constants.EDIT_QUIZ_PANEL)) {
 			return new JScrollPane(EditQuizPanel.getEditQuestionPanel(file));

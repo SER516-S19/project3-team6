@@ -4,21 +4,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-
+import javax.swing.border.SoftBevelBorder;
 import constants.Constants;
 import controller.ChangeStateListener;
 import controller.QuestionsDisplay;
@@ -31,6 +29,7 @@ import model.Quiz;
  *
  */
 public class QuestionDisplayPanel extends JPanel {
+	
 	private static final long serialVersionUID = 1L;
 	JLabel questionLabel = null;
 	JRadioButton optionA = null;
@@ -43,79 +42,64 @@ public class QuestionDisplayPanel extends JPanel {
 	public static List<Question> questions;
 	String correctAnswer = null;
 
+	// returns a panel with Questions added to it based on the quiz selected.
 	public void display(final int counter)
 	{
 		this.setBackground(new Color(255, 255, 255));
         this.setBorder(new EmptyBorder(10, 10, 10, 10));
-        Dimension buttonDimension = new Dimension(130, 20);
-        Font buttonFont = new Font("Monospaced", Font.PLAIN, 20);
 		
-		JButton nextButton=new JButton(Constants.NEXT_BUTTON);
-		nextButton.setFont(buttonFont);
-
-		nextButton.setSize(buttonDimension);
-
-		nextButton.setFocusPainted(false);
-		
+        JButton nextButton=new JButton(Constants.NEXT_BUTTON);
+		styleButton(nextButton);
 		JButton giveupButton=new JButton(Constants.GIVEUP_BUTTON);
-		giveupButton.setFont(buttonFont);
-		giveupButton.setSize(buttonDimension);
-		giveupButton.setFocusPainted(false);
-        
+		styleButton(giveupButton);
 		JButton submitButton = new JButton(Constants.SUBMIT_BUTTON);
-		submitButton.setFont(buttonFont);
-
-		submitButton.setSize(buttonDimension);
-		submitButton.setFocusPainted(false);
+		styleButton(submitButton);
 		
 		if (questions.size() == 0) {
 			StudentMainFrame.closeWindow();
 		}
-		
-		questionLabel = new JLabel (questions.get(counter).getTitle());
-		questionLabel.setFont(buttonFont); 
+		questionLabel = new JLabel (questions.get(counter).getTitle()); 
 		String[] options = new String[4];
 		options = questions.get(counter).getOptions();
 		optionA = new JRadioButton(options[0]);
-		optionA.setFont(buttonFont); 
 		optionB = new JRadioButton(options[1]);
-		optionB.setFont(buttonFont);
 		optionC = new JRadioButton(options[2]);
-		optionC.setFont(buttonFont);
 		optionD = new JRadioButton(options[3]);
-
-		optionD.setFont(buttonFont);
-		ButtonGroup ansbuttonGroup = new ButtonGroup();
+		
+		ButtonGroup ansbuttonGroup = new ButtonGroup(); // for grouping buttons together
 		ansbuttonGroup.add(optionA);
 		ansbuttonGroup.add(optionB);
 		ansbuttonGroup.add(optionC);
 		ansbuttonGroup.add(optionD);
 		correctAnswer = questions.get(counter).getCorrectAnswer();
-
+		
 		giveupButton.addActionListener(new ChangeStateListener());
 		Dimension panelDimention = new Dimension(600, 300);
-		JPanel jp = new JPanel();
-		jp.setAlignmentX( JPanel.LEFT_ALIGNMENT);		
-		jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
-		jp.setPreferredSize(panelDimention);
-		jp.setBackground(new Color(255, 255, 255));
-		jp.setBorder(BorderFactory.createLineBorder(Color.black));
-
-		jp.add(questionLabel);
-		jp.add(optionA);
-		jp.add(optionB);
-		jp.add(optionC);
-		jp.add(optionD);
+		JPanel questionPanel = new JPanel();
+		questionPanel.setAlignmentX( JPanel.LEFT_ALIGNMENT);		
+		questionPanel.setLayout(new BoxLayout(questionPanel, BoxLayout.Y_AXIS));
+		questionPanel.setPreferredSize(panelDimention);
+		questionPanel.setBackground(new Color(255, 255, 255));
 		
-		JPanel jp1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		jp1.setAlignmentX( JPanel.LEFT_ALIGNMENT );
-		jp1.setBackground(new Color(255, 255, 255));
-		jp1.add(submitButton);
-		jp1.add(giveupButton);
-		jp1.add(nextButton);
+		Color borderColor = new Color(192, 192, 192);
+        Border border = new SoftBevelBorder(BevelBorder.LOWERED, borderColor, borderColor, borderColor, borderColor);
+		questionPanel.setBorder(border);
 
-		this.add(jp);
-		this.add(jp1);
+		questionPanel.add(questionLabel);
+		questionPanel.add(optionA);
+		questionPanel.add(optionB);
+		questionPanel.add(optionC);
+		questionPanel.add(optionD);
+		
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		buttonPanel.setAlignmentX( JPanel.LEFT_ALIGNMENT );
+		buttonPanel.setBackground(new Color(255, 255, 255));
+		buttonPanel.add(submitButton);
+		buttonPanel.add(giveupButton);
+		buttonPanel.add(nextButton);
+
+		this.add(questionPanel);
+		this.add(buttonPanel);
 
 		nextButton.addActionListener(new ActionListener() {
 			@Override
@@ -193,8 +177,16 @@ public class QuestionDisplayPanel extends JPanel {
 			}
 		});
 	}
-
+	
+	// setting the questions for the quiz selected
 	static void setQuestion(String filePath) {
 		questions = QuestionsDisplay.getAllQuestions(filePath);
+	}
+	
+	// method for common styling of the buttons
+	public static void styleButton(JButton button) {
+		button.setFont(new Font("Monospaced", Font.PLAIN, 20));
+		button.setPreferredSize(new Dimension(145, 40));
+		button.setFocusPainted(false);
 	}
 }

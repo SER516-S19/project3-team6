@@ -3,8 +3,10 @@ package services;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.Properties;
 import java.util.List;
+
+import constants.Constants;
+
 import java.util.ArrayList;
 
 /**
@@ -28,9 +30,8 @@ public class ReadJsonServiceFactory {
 		
 		File file = new File(_directoryPath);
 		
-		// creating a file name filer of .json to filter out all json files
+		// creating a filename filer of .json to filter out all JSON files in the directory
 		String[] allJsonFiles = file.list(new FilenameFilter() {
-			
 			@Override
 			public boolean accept(File dir, String name) {
 				if(name.toLowerCase().endsWith(".json")){
@@ -47,12 +48,11 @@ public class ReadJsonServiceFactory {
 		return filesFullPath;
 	}
 	
-	// static block to read the properties file to get the directory path where
-	// all the .json files are placed
+	// static block to read the directory path of the JSON files placed
 	static {
 		try {
-			File quizFileDir = new File("src/../../Quizzes/");
-			_directoryPath = quizFileDir.getCanonicalPath() + '/';
+			_directoryPath = System.getProperty("user.dir");
+			_directoryPath = _directoryPath + "/Quizzes/";
 		} catch (Throwable t) {
 			t.printStackTrace();
 		} finally {

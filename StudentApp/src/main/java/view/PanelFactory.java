@@ -19,14 +19,10 @@ public class PanelFactory {
 	public static JComponent createPanel(final String componentName) {
 		if(componentName.equalsIgnoreCase(Constants.DASHBOARD_PANEL)) {
 			return new QuizSelectionPanel();
-
 		}
 		else if(componentName.equalsIgnoreCase(Constants.QUESTION_DISPLAY_PANEL)) {
 			return  new QuestionDisplayPanel();
 		}
 		return new JPanel();//Added only till other components are missing!
-
 	}
-
-
 }
